@@ -11,14 +11,8 @@
 
 @interface GameCharacter : GameObject
 
-@property (nonatomic, assign) int characterHealth;
 @property (nonatomic, assign) CharacterStates characterState;
 
-- (int)getWeaponDamage;
 - (void)checkAndClampSpritePosition;
-- (BOOL)isDead;
-- (void)reanimateWithHealth:(int)health;
-- (void)takeHit;
-- (void)takeHitWithDamage:(int)damage;
 
 @end

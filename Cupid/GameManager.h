@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Constants.h"
 #import "SimpleAudioEngine.h"
 
 @interface GameManager : NSObject

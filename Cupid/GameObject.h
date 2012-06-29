@@ -8,25 +8,36 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Box2D.h"
 #import "CommonProtocols.h"
 #import "CCSprite+Extras.h"
-#import "PESprite.h"
 //#import "GameManager.h"
 
-@interface GameObject : PESprite
+@interface GameObject : CCSprite
 
+@property (nonatomic, readonly) NSInteger health;
+@property (nonatomic, readonly) b2World *world;
+@property (nonatomic, readonly) b2Body *body;
+@property (nonatomic, readonly) NSString *frameName;
+
+@property (nonatomic, assign) GameObjectType gameObjectType;
+@property (nonatomic, assign) CGFloat maxHealth;
+@property (nonatomic, assign) CGSize screenSize;
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) BOOL reactsToScreenBoundaries;
-@property (nonatomic, assign) CGSize screenSize;
-@property (nonatomic, assign) GameObjectType gameObjectType;
+
+// The Shape Name will be derived from the spriteFrameName
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName
+						world:(b2World *)world
+					maxHealth:(NSInteger)maxHealth;
 
 - (void)changeState:(CharacterStates)newState;
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects;
+- (BOOL)dead;
+- (void)destroy;
+- (void)revive;
+- (void)takeHit;
 - (CGRect)adjustedBoundingBox;
 - (CCAnimation *)loadPlistForAnimationName:(NSString *)animationName andClassName:(NSString *)className;
-
-- (void)zombify;
-- (void)reanimate;
-- (void)destroy;
 
 @end

@@ -49,7 +49,7 @@
     switch (newState) {
 		case kStateSpawning:
 			action = [CCAnimate actionWithAnimation:self.firingAnim restoreOriginalFrame:NO];
-			[self reanimate];
+			[self revive];
 			break;
         case kStateTraveling:
 			[self runAction:
@@ -58,7 +58,7 @@
 			
             action = [CCSequence actions:
 					  [CCMoveTo actionWithDuration:1.5f position:ccp(0.0 - 22.0f, self.position.y)],
-					  [CCCallFunc actionWithTarget:self selector:@selector(zombify)],
+					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
         default:

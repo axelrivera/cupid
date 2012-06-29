@@ -7,24 +7,49 @@
 //
 
 #import "GameObject.h"
+#import "ShapeCache.h"
+
+@interface GameObject (Private)
+
+- (void)createBody;
+- (void)destroyBody;
+
+@end
 
 @implementation GameObject
 
-@synthesize isActive = isActive_;
-@synthesize reactsToScreenBoundaries = reactsToScreenBoundaries_;
-@synthesize screenSize = screenSize_;
-@synthesize gameObjectType = gameObjectType_;
+@synthesize health = _health;
+@synthesize world = _world;
+@synthesize body = _body;
+@synthesize frameName = _frameName;
+@synthesize gameObjectType = _gameObjectType;
+@synthesize maxHealth = _maxHealth;
+@synthesize screenSize = _screenSize;
+@synthesize isActive = _isActive;
+@synthesize reactsToScreenBoundaries = _reactsToScreenBoundaries;
 
-- (id) init
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName
+						world:(b2World *)world
+					maxHealth:(NSInteger)maxHealth
 {
-    self = [super init];
-    if (self) {
-        //CCLOG(@"GameObject: init");
-        screenSize_ = [CCDirector sharedDirector].winSize;
-        isActive_ = YES;
-        gameObjectType_ = kObjectTypeNone;
-    }
-    return self;
+	self = [super initWithSpriteFrameName:spriteFrameName];
+	if (self) {
+		//CCLOG(@"GameObject: init");
+        _screenSize = [CCDirector sharedDirector].winSize;
+        _isActive = YES;
+        _gameObjectType = kObjectTypeNone;
+		_health = maxHealth;
+		_maxHealth = maxHealth;
+		_world = world;
+		_frameName = [spriteFrameName retain];
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[_frameName release];
+	[super dealloc];
 }
 
 #pragma mark Custom Methods
@@ -37,6 +62,41 @@
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
     //CCLOG(@"GameObject: updateStateWithDeltaTime:andListOfGameObjects method should be overridden.");
+}
+
+- (BOOL)dead
+{
+    return self.maxHealth == 0;
+}
+
+- (void)destroy
+{    
+    self.maxHealth = 0;
+    [self stopAllActions];
+    [self runAction:
+     [CCSequence actions:
+      [CCFadeOut actionWithDuration:0.1],
+      [CCCallFuncN actionWithTarget:self 
+                           selector:@selector(setNodeInvisible:)],
+      nil]];
+}
+
+- (void)revive
+{
+    _health = self.maxHealth;
+    [self stopAllActions];
+    self.visible = YES;
+    self.opacity = 255.0;
+    [self createBody];
+}
+
+- (void)takeHit {
+    if (self.health > 0) {
+        _health--;
+    }
+    if (self.health == 0) {
+        [self destroy];
+    } 
 }
 
 - (CGRect)adjustedBoundingBox
@@ -94,36 +154,36 @@
     return animationToReturn;
 }
 
-- (void)zombify
-{
-	[self stopAllActions];
-    [self runAction:
-     [CCSequence actions:
-      [CCFadeOut actionWithDuration:0.0],
-      [CCCallFuncN actionWithTarget:self 
-                           selector:@selector(setNodeInvisible:)],
-      nil]];
+#pragma mark - Private Methods
+
+- (void) createBody
+{    
+    [self destroyBody];
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(self.position.x / PTM_RATIO, self.position.y / PTM_RATIO);
+    bodyDef.userData = self;
+    _body = _world->CreateBody(&bodyDef);
+	NSString *shapeName = [self.frameName stringByDeletingPathExtension];
+    [[ShapeCache sharedShapeCache] addFixturesToBody:_body forShapeName:shapeName scale:self.scale];
+    [self setAnchorPoint:[[ShapeCache sharedShapeCache] anchorPointForShape:shapeName]];
 }
 
-- (void)reanimate
+- (void) destroyBody
 {
-	[self stopAllActions];
-    self.visible = YES;
-    self.opacity = 255;
+    if (_body != NULL) {
+        _world->DestroyBody(_body);
+        _body = NULL;
+    }
 }
 
-- (void)destroy
+#pragma mark - Selector Methods
+
+- (void)setNodeInvisible:(CCNode *)sender
 {
-	[self stopAllActions];
-	self.visible = NO;
-	[self removeFromParentAndCleanup:YES];
-}
-
-#pragma mark - Selector Actions
-
-- (void)setNodeInvisible:(CCNode *)sender {
     sender.position = CGPointZero;
     sender.visible = NO;
+    [self destroyBody];
 }
 
 @end

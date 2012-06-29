@@ -46,7 +46,7 @@
 		case kStateSpawning:
 		{
 			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"monster_grey_1.png"]];
-			[self reanimate];
+			[self revive];
 			break;
 		}
 		case kStateTraveling:
@@ -57,7 +57,7 @@
 			float offScreenXPosition = (xOffset * -1) - 1;
 			action = [CCSequence actions:
 					  [CCMoveTo actionWithDuration:randomValueBetween(2.0f, 10.0f) position:ccp(offScreenXPosition, self.position.y)],
-					  [CCCallFunc actionWithTarget:self selector:@selector(zombify)],
+					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
         }

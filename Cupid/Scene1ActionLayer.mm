@@ -12,7 +12,9 @@
 #import "Monster.h"
 #import "RotatingMonster.h"
 #import "MonsterBeam.h"
-#import "GB2ShapeCache.h"
+#import "ShapeCache.h"
+#import "Box2D.h"
+#import "GLES-Render.h"
 
 @interface Scene1ActionLayer (Private)
 
@@ -24,6 +26,9 @@
 - (void)createCloud;
 - (void)resetCloudWithNode:(id)node;
 - (void)loadGameOverLayer;
+
+- (void)setupWorld;
+- (void)setupDebugDraw;
 
 @end
 
@@ -37,19 +42,26 @@
 	GameObjectArray *arrowArray_;
 	GameObjectArray *beamArray_;
 	BOOL gameOver_;
+	
+	// Box2D
+	b2World * _world;
+    GLESDebugDraw * _debugDraw;
 }
 
 - (id)init
 {
 	self = [super init];
 	if (self) {
+		[self setupWorld];
+		[self setupDebugDraw];
+		
 		gameOver_ = NO;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet-iPhone.plist"];
 		sceneSpriteBatchNode_ = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet-iPhone.png"];
         [self addChild:sceneSpriteBatchNode_ z:5];
 		
-		[[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapes-iPhone.plist"];
+		[[ShapeCache sharedShapeCache] addShapesWithFile:@"shapes-iPhone.plist"];
 		
 		for (int x = 0; x < 15; x++) {
             [self createCloud];
@@ -60,6 +72,18 @@
 		[self setupArrays];
 	}
 	return self;
+}
+
+-(void) draw {   
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    
+    _world->DrawDebugData();
+    
+    glEnable(GL_TEXTURE_2D);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);	
 }
 
 - (void)dealloc
@@ -104,8 +128,7 @@
 
 - (void)spawnCupid
 {
-	Cupid *cupid = [[Cupid alloc] initWithSpriteFrameName:@"cupid_1.png"];
-	cupid.physicsEditorName = kCupidShapeName;
+	Cupid *cupid = [[Cupid alloc] initWithSpriteFrameName:@"cupid_1.png" world:_world maxHealth:1];
 	cupid.delegate = self;
 	cupid.position = ccp(100.0f, 150.0f);
 	[sceneSpriteBatchNode_ addChild:cupid z:kCupidSpriteZValue tag:kCupidSpriteTagValue];
@@ -117,22 +140,30 @@
 	monsterArray_ = [[GameObjectArray alloc] initWithCapacity:30
 												   className:NSStringFromClass([Monster class])
 											  spriteFrameName:@"monster_grey_1.png"
-													batchNode:sceneSpriteBatchNode_];
+													batchNode:sceneSpriteBatchNode_
+														world:_world
+													maxHealth:1];
 	
 	rotatingMonsterArray_ = [[GameObjectArray alloc] initWithCapacity:10
 													  className:NSStringFromClass([RotatingMonster class])
 													  spriteFrameName:@"monster_blue.png"
-															batchNode:sceneSpriteBatchNode_];
+															batchNode:sceneSpriteBatchNode_
+																world:_world
+															maxHealth:3];
 
 	arrowArray_ = [[GameObjectArray alloc] initWithCapacity:20
 												 className:NSStringFromClass([Arrow class])
 											spriteFrameName:@"arrow_1.png"
-												  batchNode:sceneSpriteBatchNode_];
+												  batchNode:sceneSpriteBatchNode_
+													  world:_world
+												  maxHealth:1];
 	
 	beamArray_ = [[GameObjectArray alloc] initWithCapacity:20
 										   className:NSStringFromClass([MonsterBeam class])
 										   spriteFrameName:@"beam_1.png"
-												 batchNode:sceneSpriteBatchNode_];
+												 batchNode:sceneSpriteBatchNode_
+													 world:_world
+												 maxHealth:1];
 }
 
 - (void)createCloud
@@ -185,7 +216,6 @@
 		
         // Create a new monster object
         GameCharacter *monster = (GameCharacter *)[monsterArray_ nextObject];
-		monster.characterHealth = 1;
 		
 		float randYLow = 0.0 + (monster.contentSize.height / 2.0);
 		float randYHigh = screenSize.height - (monster.contentSize.height / 2.0);
@@ -211,7 +241,6 @@
         // Create a new monster object
         RotatingMonster *rotatingMonster = (RotatingMonster *)[rotatingMonsterArray_ nextObject];
 		rotatingMonster.delegate = self;
-		rotatingMonster.characterHealth = 2;
 		
 		float randYLow = 0.0 + (rotatingMonster.contentSize.height / 2.0);
 		float randYHigh = screenSize.height - (rotatingMonster.contentSize.height / 2.0);
@@ -227,54 +256,54 @@
 
 - (void)updateCollisions:(ccTime)deltaTime
 {
-	for (Arrow *arrow in arrowArray_.array) {
-        if (!arrow.visible) continue;
-        
-        for (Monster *monster in monsterArray_.array) {
-            if (!monster.visible) continue;
-            
-            if ([monster intersectsTarget:arrow]) {
-                [monster takeHit];
-				if ([monster isDead]) {
-					monster.visible = NO;
-				}
-                arrow.visible = NO;
-                break;
-            }   
-        }
-		
-		for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
-            if (!rotatingMonster.visible) continue;
-            
-            if ([rotatingMonster intersectsTarget:arrow]) {
-                [rotatingMonster takeHit];
-				if ([rotatingMonster isDead]) {
-					//rotatingMonster.visible = NO;
-					[rotatingMonster zombify];
-				}
-                arrow.visible = NO;
-                break;
-            }   
-        } 
-    }
-	
-	Cupid *cupid = (Cupid *)[sceneSpriteBatchNode_ getChildByTag:kCupidSpriteTagValue];
-	
-	for (Monster *monster in monsterArray_.array) {
-		if (!monster.visible) continue;
-		
-		if ([monster intersectsTarget:cupid]) {
-			[cupid changeState:kStateDead];
-		}
-	}
-	
-	for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
-		if (!rotatingMonster.visible) continue;
-		
-		if ([rotatingMonster intersectsTarget:cupid]) {
-			[cupid changeState:kStateDead];
-		}
-	}
+//	for (Arrow *arrow in arrowArray_.array) {
+//        if (!arrow.visible) continue;
+//        
+//        for (Monster *monster in monsterArray_.array) {
+//            if (!monster.visible) continue;
+//            
+//            if ([monster intersectsTarget:arrow]) {
+//                [monster takeHit];
+//				if ([monster isDead]) {
+//					monster.visible = NO;
+//				}
+//                arrow.visible = NO;
+//                break;
+//            }   
+//        }
+//		
+//		for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
+//            if (!rotatingMonster.visible) continue;
+//            
+//            if ([rotatingMonster intersectsTarget:arrow]) {
+//                [rotatingMonster takeHit];
+//				if ([rotatingMonster isDead]) {
+//					//rotatingMonster.visible = NO;
+//					[rotatingMonster destroy];
+//				}
+//                arrow.visible = NO;
+//                break;
+//            }   
+//        } 
+//    }
+//	
+//	Cupid *cupid = (Cupid *)[sceneSpriteBatchNode_ getChildByTag:kCupidSpriteTagValue];
+//	
+//	for (Monster *monster in monsterArray_.array) {
+//		if (!monster.visible) continue;
+//		
+//		if ([monster intersectsTarget:cupid]) {
+//			[cupid changeState:kStateDead];
+//		}
+//	}
+//	
+//	for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
+//		if (!rotatingMonster.visible) continue;
+//		
+//		if ([rotatingMonster intersectsTarget:cupid]) {
+//			[cupid changeState:kStateDead];
+//		}
+//	}
 }
 
 - (void)loadGameOverLayer
@@ -318,6 +347,20 @@
 - (void)shouldRestartScene:(id)sender
 {
 	[[GameManager sharedGameManager] runSceneWithID:kGameLevel1];
+}
+
+- (void)setupWorld {    
+    b2Vec2 gravity = b2Vec2(0.0f, 0.0f);
+    bool doSleep = false; 
+    _world = new b2World(gravity, doSleep); 
+    //_contactListener = new SimpleContactListener(self);
+    //_world->SetContactListener(_contactListener);
+}
+
+- (void)setupDebugDraw {    
+    _debugDraw = new GLESDebugDraw(PTM_RATIO*[[CCDirector sharedDirector] contentScaleFactor]);
+    _world->SetDebugDraw(_debugDraw);
+    _debugDraw->SetFlags(b2DebugDraw::e_shapeBit | b2DebugDraw::e_jointBit);
 }
 
 @end

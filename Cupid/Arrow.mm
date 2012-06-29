@@ -43,12 +43,12 @@
     switch (newState) {
 		case kStateSpawning:
 			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"arrow_1.png"]];
-			[self reanimate];
+			[self revive];
 			break;
         case kStateTraveling:
             action = [CCSequence actions:
 					  [CCMoveTo actionWithDuration:1.0f position:ccp(self.screenSize.width + 22.0f, self.position.y)],
-					  [CCCallFunc actionWithTarget:self selector:@selector(zombify)],
+					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
         default:

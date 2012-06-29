@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Box2D.h"
 
 @interface GameObjectArray : NSObject
-{
-	int nextItem_;
-}
 
 @property (nonatomic, readonly) CCArray *array;
 
-- (id)initWithCapacity:(int)capacity spriteFrameName:(NSString *)spriteFrameName batchNode:(CCSpriteBatchNode *)batchNode;
-- (id)initWithCapacity:(int)capacity
+- (id)initWithCapacity:(NSInteger)capacity
 			 className:(NSString *)className
 	   spriteFrameName:(NSString *)spriteFrameName
-			 batchNode:(CCSpriteBatchNode *)batchNode;
+			 batchNode:(CCSpriteBatchNode *)batchNode
+				 world:(b2World *)world
+			 maxHealth:(NSInteger)maxHealth;
+
 - (id)nextObject;
 
 @end

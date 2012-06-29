@@ -119,7 +119,7 @@
 
 - (void)fly:(ccTime)deltaTime
 {
-	CGRect cupidBoundingBox = [self boundingBoxInWorld];
+	CGRect cupidBoundingBox = [self adjustedBoundingBox];
 	CGPoint scaledVelocity = ccp(0.0f, 150.0f);
     CGPoint oldPosition = self.position;
 	

@@ -10,37 +10,31 @@
 #import "GameObject.h"
 
 @implementation GameObjectArray
-
-@synthesize array = array_;
-
-- (id)initWithCapacity:(int)capacity spriteFrameName:(NSString *)spriteFrameName batchNode:(CCSpriteBatchNode *)batchNode
 {
-	[self initWithCapacity:capacity
-				 className:NSStringFromClass([GameObject class])
-		   spriteFrameName:spriteFrameName
-				 batchNode:batchNode];
-	return self;
+	NSInteger _nextItem;
 }
 
-- (id)initWithCapacity:(int)capacity
+@synthesize array = _array;
+
+- (id)initWithCapacity:(NSInteger)capacity
 			 className:(NSString *)className
 	   spriteFrameName:(NSString *)spriteFrameName
 			 batchNode:(CCSpriteBatchNode *)batchNode
+				 world:(b2World *)world
+			 maxHealth:(NSInteger)maxHealth
 {
 	Class myClass = NSClassFromString(className);
 	NSAssert(![myClass isKindOfClass:[GameObject class]], @"Game Object: invalid object");
 	
 	self = [super init];
 	if (self) {
-		nextItem_ = 0;
-		array_ = [[CCArray alloc] initWithCapacity:capacity];
+		_nextItem = 0;
+		_array = [[CCArray alloc] initWithCapacity:capacity];
 		for (int i = 0; i < capacity; i++) {
-			id myObject = [[[myClass alloc] initWithSpriteFrameName:spriteFrameName] autorelease];
-			NSString *shapeName = [spriteFrameName stringByDeletingPathExtension];
-			[myObject setPhysicsEditorName:shapeName];
+			id myObject = [[[myClass alloc] initWithSpriteFrameName:spriteFrameName world:world maxHealth:maxHealth] autorelease];
 			[myObject setVisible:NO];
 			[batchNode addChild:myObject];
-			[array_ addObject:myObject];
+			[_array addObject:myObject];
 		}
 	}
 	return self;
@@ -48,17 +42,17 @@
 
 - (id)nextObject
 {
-	id retVal = [array_ objectAtIndex:nextItem_];
-	nextItem_++;
-	if (nextItem_ >= [array_ count]) {
-		nextItem_ = 0;
+	id retVal = [_array objectAtIndex:_nextItem];
+	_nextItem++;
+	if (_nextItem >= [_array count]) {
+		_nextItem = 0;
 	}
 	return retVal;
 }
 
 - (void)dealloc
 {
-	[array_ release];
+	[_array release];
 	[super dealloc];
 }
 
