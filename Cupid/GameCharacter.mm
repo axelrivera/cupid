@@ -29,7 +29,7 @@
 
 - (void)checkAndClampSpritePosition
 {
-    CGPoint currentSpritePosition = self.position;
+    CGPoint currentSpritePosition = [self positionInWorld];
     CGSize levelSize = [[GameManager sharedGameManager] getDimensionsForcurrentScene];
     
     float xOffset = 24.0f;

@@ -57,7 +57,7 @@
 			  [CCAnimate actionWithAnimation:self.firingAnim restoreOriginalFrame:NO]]];
 			
             action = [CCSequence actions:
-					  [CCMoveTo actionWithDuration:1.0f position:ccp(0.0 - 22.0f, self.position.y)],
+					  [CCMoveTo actionWithDuration:1.5f position:ccp(0.0 - 22.0f, self.position.y)],
 					  [CCCallFunc actionWithTarget:self selector:@selector(zombify)],
 					  nil];
             break;

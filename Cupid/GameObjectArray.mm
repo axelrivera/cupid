@@ -7,6 +7,7 @@
 //
 
 #import "GameObjectArray.h"
+#import "GameObject.h"
 
 @implementation GameObjectArray
 
@@ -14,12 +15,10 @@
 
 - (id)initWithCapacity:(int)capacity spriteFrameName:(NSString *)spriteFrameName batchNode:(CCSpriteBatchNode *)batchNode
 {
-	GameObject *gameObject = [[GameObject alloc] initWithSpriteFrameName:spriteFrameName];
 	[self initWithCapacity:capacity
 				 className:NSStringFromClass([GameObject class])
 		   spriteFrameName:spriteFrameName
 				 batchNode:batchNode];
-	[gameObject release];
 	return self;
 }
 
@@ -36,8 +35,10 @@
 		nextItem_ = 0;
 		array_ = [[CCArray alloc] initWithCapacity:capacity];
 		for (int i = 0; i < capacity; i++) {
-			GameObject *myObject = (GameObject *)[[[myClass alloc] initWithSpriteFrameName:spriteFrameName] autorelease];
-			myObject.visible = NO;
+			id myObject = [[[myClass alloc] initWithSpriteFrameName:spriteFrameName] autorelease];
+			NSString *shapeName = [spriteFrameName stringByDeletingPathExtension];
+			[myObject setPhysicsEditorName:shapeName];
+			[myObject setVisible:NO];
 			[batchNode addChild:myObject];
 			[array_ addObject:myObject];
 		}

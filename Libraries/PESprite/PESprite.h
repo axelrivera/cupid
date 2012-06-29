@@ -16,7 +16,6 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "GB2ShapeCache.h"
-#import "GameCharacter.h"
 
 
 #define PTM_RATIO					32
@@ -39,7 +38,7 @@ public:
 @end
 
 
-@interface PESprite : GameCharacter {
+@interface PESprite : CCSprite {
 	b2Transform		*box2dTransform;
 	FixtureDef		*fixtureDef;
 	NSString*		physicsEditorName;

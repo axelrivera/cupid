@@ -12,6 +12,7 @@
 #import "Monster.h"
 #import "RotatingMonster.h"
 #import "MonsterBeam.h"
+#import "GB2ShapeCache.h"
 
 @interface Scene1ActionLayer (Private)
 
@@ -46,8 +47,9 @@
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet-iPhone.plist"];
 		sceneSpriteBatchNode_ = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet-iPhone.png"];
-		
         [self addChild:sceneSpriteBatchNode_ z:5];
+		
+		[[GB2ShapeCache sharedShapeCache] addShapesWithFile:@"shapes-iPhone.plist"];
 		
 		for (int x = 0; x < 15; x++) {
             [self createCloud];
@@ -103,6 +105,7 @@
 - (void)spawnCupid
 {
 	Cupid *cupid = [[Cupid alloc] initWithSpriteFrameName:@"cupid_1.png"];
+	cupid.physicsEditorName = kCupidShapeName;
 	cupid.delegate = self;
 	cupid.position = ccp(100.0f, 150.0f);
 	[sceneSpriteBatchNode_ addChild:cupid z:kCupidSpriteZValue tag:kCupidSpriteTagValue];
@@ -224,13 +227,13 @@
 
 - (void)updateCollisions:(ccTime)deltaTime
 {
-	for (GameCharacter *arrow in arrowArray_.array) {
+	for (Arrow *arrow in arrowArray_.array) {
         if (!arrow.visible) continue;
         
-        for (GameCharacter *monster in monsterArray_.array) {
+        for (Monster *monster in monsterArray_.array) {
             if (!monster.visible) continue;
             
-            if (CGRectIntersectsRect([monster adjustedBoundingBox], [arrow adjustedBoundingBox])) {
+            if ([monster intersectsTarget:arrow]) {
                 [monster takeHit];
 				if ([monster isDead]) {
 					monster.visible = NO;
@@ -240,10 +243,10 @@
             }   
         }
 		
-		for (GameCharacter *rotatingMonster in rotatingMonsterArray_.array) {
+		for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
             if (!rotatingMonster.visible) continue;
             
-            if (CGRectIntersectsRect([rotatingMonster adjustedBoundingBox], [arrow adjustedBoundingBox])) {
+            if ([rotatingMonster intersectsTarget:arrow]) {
                 [rotatingMonster takeHit];
 				if ([rotatingMonster isDead]) {
 					//rotatingMonster.visible = NO;
@@ -257,18 +260,18 @@
 	
 	Cupid *cupid = (Cupid *)[sceneSpriteBatchNode_ getChildByTag:kCupidSpriteTagValue];
 	
-	for (GameCharacter *monster in monsterArray_.array) {
+	for (Monster *monster in monsterArray_.array) {
 		if (!monster.visible) continue;
 		
-		if (CGRectIntersectsRect([monster adjustedBoundingBox], [cupid adjustedBoundingBox])) {
+		if ([monster intersectsTarget:cupid]) {
 			[cupid changeState:kStateDead];
 		}
 	}
 	
-	for (GameCharacter *rotatingMonster in rotatingMonsterArray_.array) {
+	for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
 		if (!rotatingMonster.visible) continue;
 		
-		if (CGRectIntersectsRect([rotatingMonster adjustedBoundingBox], [cupid adjustedBoundingBox])) {
+		if ([rotatingMonster intersectsTarget:cupid]) {
 			[cupid changeState:kStateDead];
 		}
 	}

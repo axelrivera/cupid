@@ -30,6 +30,12 @@ typedef enum {
     kLinkBookSite
 } LinkTypes;
 
+#define kCupidShapeName @"cupid_1"
+#define kMonsterBlueShapeName @"monster_blue"
+#define kMonsterGreyShapeName @"monster_grey_1"
+#define kArrowShapeName @"arrow_1"
+#define kBeamShapeName @"beam_1"
+
 // Debut Enemy States with Labels (0 = OFF, 1 = ON)
 #define ENEMY_STATE_DEBUG 0
 

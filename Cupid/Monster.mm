@@ -44,10 +44,13 @@
     
     switch (newState) {
 		case kStateSpawning:
+		{
 			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"monster_grey_1.png"]];
 			[self reanimate];
 			break;
+		}
 		case kStateTraveling:
+		{
 			[self runAction:
 			 [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:movingAnim_ restoreOriginalFrame:NO]]];
 			float xOffset = [self boundingBox].size.width / 2.0f;
@@ -57,9 +60,12 @@
 					  [CCCallFunc actionWithTarget:self selector:@selector(zombify)],
 					  nil];
             break;
-        default:
+        }
+		default:
+		{
 			CCLOG(@"Monster: Unknown state %@", self.characterState);
             break;
+		}
     }
     if (action) {
         [self runAction:action];

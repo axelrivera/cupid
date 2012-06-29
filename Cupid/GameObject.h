@@ -10,9 +10,10 @@
 #import "cocos2d.h"
 #import "CommonProtocols.h"
 #import "CCSprite+Extras.h"
+#import "PESprite.h"
 //#import "GameManager.h"
 
-@interface GameObject : CCSprite
+@interface GameObject : PESprite
 
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) BOOL reactsToScreenBoundaries;

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PESprite.h"
+#import "GameCharacter.h"
 #import "SneakyButton.h"
 
-@interface Cupid : PESprite
+@interface Cupid : GameCharacter
 
 @property (nonatomic, assign) id <GameplayLayerDelegate> delegate;
 

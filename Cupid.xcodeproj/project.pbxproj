@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161D9D08159D2E95000FB9F1 /* shapes-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */; };
+		161D9D0B159D36C6000FB9F1 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 161D9D0A159D36C6000FB9F1 /* GLES-Render.mm */; };
+		161D9D1A159D4739000FB9F1 /* PESprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 161D9D19159D4739000FB9F1 /* PESprite.mm */; };
 		1642F4D71512821800DA67BE /* spritesheet-iPhone-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */; };
 		1642F4D81512821800DA67BE /* spritesheet-iPhone-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */; };
 		1642F4D91512821800DA67BE /* spritesheet-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */; };
 		1642F4DA1512821800DA67BE /* spritesheet-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D61512821800DA67BE /* spritesheet-iPhone.png */; };
 		1642F4E3151285F100DA67BE /* MonsterBeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4E2151285F100DA67BE /* MonsterBeam.plist */; };
-		1686456515168486004ACBB8 /* MonsterBeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1686456415168486004ACBB8 /* MonsterBeam.m */; };
+		1686456515168486004ACBB8 /* MonsterBeam.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1686456415168486004ACBB8 /* MonsterBeam.mm */; };
 		16D4FB26159A9699002891C9 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB1E159A9699002891C9 /* CDAudioManager.m */; };
 		16D4FB27159A9699002891C9 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB21159A9699002891C9 /* CDOpenALSupport.m */; };
 		16D4FB28159A9699002891C9 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB23159A9699002891C9 /* CocosDenshion.m */; };
 		16D4FB29159A9699002891C9 /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB25159A9699002891C9 /* SimpleAudioEngine.m */; };
 		16EE6103159A8BD500696BDE /* GB2ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16EE6093159A8BD500696BDE /* GB2ShapeCache.mm */; };
-		16EE6104159A8BD500696BDE /* PESprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16EE6095159A8BD500696BDE /* PESprite.mm */; };
 		16EE6105159A8BD500696BDE /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EE6098159A8BD500696BDE /* ColoredCircleSprite.m */; };
 		16EE6106159A8BD500696BDE /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EE609A159A8BD500696BDE /* ColoredSquareSprite.m */; };
 		16EE6107159A8BD500696BDE /* SneakyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 16EE609C159A8BD500696BDE /* SneakyButton.m */; };
@@ -168,20 +170,20 @@
 		16F9078F15126C6000DB7FB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F9078E15126C6000DB7FB6 /* main.m */; };
 		16F9079215126C6000DB7FB6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F9079115126C6000DB7FB6 /* AppDelegate.m */; };
 		16F9079515126C6000DB7FB6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F9079415126C6000DB7FB6 /* RootViewController.m */; };
-		16F907CF15126DCE00DB7FB6 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907AA15126DCE00DB7FB6 /* Arrow.m */; };
+		16F907CF15126DCE00DB7FB6 /* Arrow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907AA15126DCE00DB7FB6 /* Arrow.mm */; };
 		16F907D115126DCE00DB7FB6 /* CCSprite+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907AE15126DCE00DB7FB6 /* CCSprite+Extras.m */; };
 		16F907D215126DCE00DB7FB6 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907B015126DCE00DB7FB6 /* Common.m */; };
 		16F907D315126DCE00DB7FB6 /* Cupid.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907B415126DCE00DB7FB6 /* Cupid.mm */; };
-		16F907D415126DCE00DB7FB6 /* GameCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907B615126DCE00DB7FB6 /* GameCharacter.m */; };
+		16F907D415126DCE00DB7FB6 /* GameCharacter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907B615126DCE00DB7FB6 /* GameCharacter.mm */; };
 		16F907D515126DCE00DB7FB6 /* GameControlLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907B815126DCE00DB7FB6 /* GameControlLayer.m */; };
 		16F907D615126DCE00DB7FB6 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907BA15126DCE00DB7FB6 /* GameManager.m */; };
 		16F907D715126DCE00DB7FB6 /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907BC15126DCE00DB7FB6 /* GameObject.mm */; };
-		16F907D815126DCE00DB7FB6 /* GameObjectArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907BE15126DCE00DB7FB6 /* GameObjectArray.m */; };
+		16F907D815126DCE00DB7FB6 /* GameObjectArray.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907BE15126DCE00DB7FB6 /* GameObjectArray.mm */; };
 		16F907D915126DCE00DB7FB6 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C015126DCE00DB7FB6 /* GameOverLayer.m */; };
 		16F907DA15126DCE00DB7FB6 /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C215126DCE00DB7FB6 /* MainMenuLayer.m */; };
 		16F907DB15126DCE00DB7FB6 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C415126DCE00DB7FB6 /* MainMenuScene.m */; };
-		16F907DC15126DCE00DB7FB6 /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C615126DCE00DB7FB6 /* Monster.m */; };
-		16F907DD15126DCE00DB7FB6 /* RotatingMonster.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C815126DCE00DB7FB6 /* RotatingMonster.m */; };
+		16F907DC15126DCE00DB7FB6 /* Monster.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C615126DCE00DB7FB6 /* Monster.mm */; };
+		16F907DD15126DCE00DB7FB6 /* RotatingMonster.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907C815126DCE00DB7FB6 /* RotatingMonster.mm */; };
 		16F907DE15126DCE00DB7FB6 /* Scene1.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907CA15126DCE00DB7FB6 /* Scene1.m */; };
 		16F907DF15126DCE00DB7FB6 /* Scene1ActionLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16F907CC15126DCE00DB7FB6 /* Scene1ActionLayer.mm */; };
 		16F907E015126DCE00DB7FB6 /* Scene1BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F907CE15126DCE00DB7FB6 /* Scene1BackgroundLayer.m */; };
@@ -202,13 +204,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "shapes-iPhone.plist"; sourceTree = "<group>"; };
+		161D9D09159D36C6000FB9F1 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
+		161D9D0A159D36C6000FB9F1 /* GLES-Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
+		161D9D18159D4739000FB9F1 /* PESprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESprite.h; sourceTree = "<group>"; };
+		161D9D19159D4739000FB9F1 /* PESprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PESprite.mm; sourceTree = "<group>"; };
 		1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone-hd.plist"; sourceTree = "<group>"; };
 		1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spritesheet-iPhone-hd.png"; sourceTree = "<group>"; };
 		1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone.plist"; sourceTree = "<group>"; };
 		1642F4D61512821800DA67BE /* spritesheet-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spritesheet-iPhone.png"; sourceTree = "<group>"; };
 		1642F4E2151285F100DA67BE /* MonsterBeam.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonsterBeam.plist; sourceTree = "<group>"; };
 		1686456315168486004ACBB8 /* MonsterBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBeam.h; sourceTree = "<group>"; };
-		1686456415168486004ACBB8 /* MonsterBeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBeam.m; sourceTree = "<group>"; };
+		1686456415168486004ACBB8 /* MonsterBeam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonsterBeam.mm; sourceTree = "<group>"; };
 		16D4FB1D159A9699002891C9 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		16D4FB1E159A9699002891C9 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		16D4FB1F159A9699002891C9 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -220,8 +227,6 @@
 		16D4FB25159A9699002891C9 /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
 		16EE6092159A8BD500696BDE /* GB2ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2ShapeCache.h; sourceTree = "<group>"; };
 		16EE6093159A8BD500696BDE /* GB2ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GB2ShapeCache.mm; sourceTree = "<group>"; };
-		16EE6094159A8BD500696BDE /* PESprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESprite.h; sourceTree = "<group>"; };
-		16EE6095159A8BD500696BDE /* PESprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PESprite.mm; sourceTree = "<group>"; };
 		16EE6097159A8BD500696BDE /* ColoredCircleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCircleSprite.h; sourceTree = "<group>"; };
 		16EE6098159A8BD500696BDE /* ColoredCircleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCircleSprite.m; sourceTree = "<group>"; };
 		16EE6099159A8BD500696BDE /* ColoredSquareSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredSquareSprite.h; sourceTree = "<group>"; };
@@ -523,7 +528,7 @@
 		16F9079415126C6000DB7FB6 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		16F9079915126C6000DB7FB6 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		16F907A915126DCE00DB7FB6 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
-		16F907AA15126DCE00DB7FB6 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
+		16F907AA15126DCE00DB7FB6 /* Arrow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Arrow.mm; sourceTree = "<group>"; };
 		16F907AD15126DCE00DB7FB6 /* CCSprite+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCSprite+Extras.h"; sourceTree = "<group>"; };
 		16F907AE15126DCE00DB7FB6 /* CCSprite+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCSprite+Extras.m"; sourceTree = "<group>"; };
 		16F907AF15126DCE00DB7FB6 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -533,7 +538,7 @@
 		16F907B315126DCE00DB7FB6 /* Cupid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cupid.h; sourceTree = "<group>"; };
 		16F907B415126DCE00DB7FB6 /* Cupid.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Cupid.mm; sourceTree = "<group>"; };
 		16F907B515126DCE00DB7FB6 /* GameCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCharacter.h; sourceTree = "<group>"; };
-		16F907B615126DCE00DB7FB6 /* GameCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCharacter.m; sourceTree = "<group>"; };
+		16F907B615126DCE00DB7FB6 /* GameCharacter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCharacter.mm; sourceTree = "<group>"; };
 		16F907B715126DCE00DB7FB6 /* GameControlLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameControlLayer.h; sourceTree = "<group>"; };
 		16F907B815126DCE00DB7FB6 /* GameControlLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameControlLayer.m; sourceTree = "<group>"; };
 		16F907B915126DCE00DB7FB6 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
@@ -541,7 +546,7 @@
 		16F907BB15126DCE00DB7FB6 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		16F907BC15126DCE00DB7FB6 /* GameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
 		16F907BD15126DCE00DB7FB6 /* GameObjectArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectArray.h; sourceTree = "<group>"; };
-		16F907BE15126DCE00DB7FB6 /* GameObjectArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectArray.m; sourceTree = "<group>"; };
+		16F907BE15126DCE00DB7FB6 /* GameObjectArray.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObjectArray.mm; sourceTree = "<group>"; };
 		16F907BF15126DCE00DB7FB6 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
 		16F907C015126DCE00DB7FB6 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		16F907C115126DCE00DB7FB6 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
@@ -549,9 +554,9 @@
 		16F907C315126DCE00DB7FB6 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		16F907C415126DCE00DB7FB6 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		16F907C515126DCE00DB7FB6 /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
-		16F907C615126DCE00DB7FB6 /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
+		16F907C615126DCE00DB7FB6 /* Monster.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Monster.mm; sourceTree = "<group>"; };
 		16F907C715126DCE00DB7FB6 /* RotatingMonster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatingMonster.h; sourceTree = "<group>"; };
-		16F907C815126DCE00DB7FB6 /* RotatingMonster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatingMonster.m; sourceTree = "<group>"; };
+		16F907C815126DCE00DB7FB6 /* RotatingMonster.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RotatingMonster.mm; sourceTree = "<group>"; };
 		16F907C915126DCE00DB7FB6 /* Scene1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene1.h; sourceTree = "<group>"; };
 		16F907CA15126DCE00DB7FB6 /* Scene1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene1.m; sourceTree = "<group>"; };
 		16F907CB15126DCE00DB7FB6 /* Scene1ActionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene1ActionLayer.h; sourceTree = "<group>"; };
@@ -593,6 +598,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		161D9D06159D2E95000FB9F1 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */,
+			);
+			name = Shapes;
+			path = Resources/Shapes;
+			sourceTree = "<group>";
+		};
 		1642F4D21512821800DA67BE /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,10 +683,12 @@
 		16EE6091159A8BD500696BDE /* PESprite */ = {
 			isa = PBXGroup;
 			children = (
+				161D9D18159D4739000FB9F1 /* PESprite.h */,
+				161D9D19159D4739000FB9F1 /* PESprite.mm */,
+				161D9D09159D36C6000FB9F1 /* GLES-Render.h */,
+				161D9D0A159D36C6000FB9F1 /* GLES-Render.mm */,
 				16EE6092159A8BD500696BDE /* GB2ShapeCache.h */,
 				16EE6093159A8BD500696BDE /* GB2ShapeCache.mm */,
-				16EE6094159A8BD500696BDE /* PESprite.h */,
-				16EE6095159A8BD500696BDE /* PESprite.mm */,
 			);
 			path = PESprite;
 			sourceTree = "<group>";
@@ -1148,6 +1164,7 @@
 		16F9063C15126C5C00DB7FB6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				161D9D06159D2E95000FB9F1 /* Shapes */,
 				1642F4D21512821800DA67BE /* Sprites */,
 				16F907F41512770300DB7FB6 /* Background */,
 				16F907F81512770300DB7FB6 /* Default@2x.png */,
@@ -1211,11 +1228,11 @@
 			isa = PBXGroup;
 			children = (
 				16F907A915126DCE00DB7FB6 /* Arrow.h */,
-				16F907AA15126DCE00DB7FB6 /* Arrow.m */,
+				16F907AA15126DCE00DB7FB6 /* Arrow.mm */,
 				16F907B315126DCE00DB7FB6 /* Cupid.h */,
 				16F907B415126DCE00DB7FB6 /* Cupid.mm */,
 				16F907B515126DCE00DB7FB6 /* GameCharacter.h */,
-				16F907B615126DCE00DB7FB6 /* GameCharacter.m */,
+				16F907B615126DCE00DB7FB6 /* GameCharacter.mm */,
 				16F907BB15126DCE00DB7FB6 /* GameObject.h */,
 				16F907BC15126DCE00DB7FB6 /* GameObject.mm */,
 			);
@@ -1226,11 +1243,11 @@
 			isa = PBXGroup;
 			children = (
 				16F907C515126DCE00DB7FB6 /* Monster.h */,
-				16F907C615126DCE00DB7FB6 /* Monster.m */,
+				16F907C615126DCE00DB7FB6 /* Monster.mm */,
 				16F907C715126DCE00DB7FB6 /* RotatingMonster.h */,
-				16F907C815126DCE00DB7FB6 /* RotatingMonster.m */,
+				16F907C815126DCE00DB7FB6 /* RotatingMonster.mm */,
 				1686456315168486004ACBB8 /* MonsterBeam.h */,
-				1686456415168486004ACBB8 /* MonsterBeam.m */,
+				1686456415168486004ACBB8 /* MonsterBeam.mm */,
 			);
 			name = "Enemy Objects";
 			sourceTree = "<group>";
@@ -1243,7 +1260,7 @@
 				16F907AF15126DCE00DB7FB6 /* Common.h */,
 				16F907B015126DCE00DB7FB6 /* Common.m */,
 				16F907BD15126DCE00DB7FB6 /* GameObjectArray.h */,
-				16F907BE15126DCE00DB7FB6 /* GameObjectArray.m */,
+				16F907BE15126DCE00DB7FB6 /* GameObjectArray.mm */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1373,6 +1390,7 @@
 				1642F4D91512821800DA67BE /* spritesheet-iPhone.plist in Resources */,
 				1642F4DA1512821800DA67BE /* spritesheet-iPhone.png in Resources */,
 				1642F4E3151285F100DA67BE /* MonsterBeam.plist in Resources */,
+				161D9D08159D2E95000FB9F1 /* shapes-iPhone.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1386,26 +1404,25 @@
 				16F9078F15126C6000DB7FB6 /* main.m in Sources */,
 				16F9079215126C6000DB7FB6 /* AppDelegate.m in Sources */,
 				16F9079515126C6000DB7FB6 /* RootViewController.m in Sources */,
-				16F907CF15126DCE00DB7FB6 /* Arrow.m in Sources */,
+				16F907CF15126DCE00DB7FB6 /* Arrow.mm in Sources */,
 				16F907D115126DCE00DB7FB6 /* CCSprite+Extras.m in Sources */,
 				16F907D215126DCE00DB7FB6 /* Common.m in Sources */,
 				16F907D315126DCE00DB7FB6 /* Cupid.mm in Sources */,
-				16F907D415126DCE00DB7FB6 /* GameCharacter.m in Sources */,
+				16F907D415126DCE00DB7FB6 /* GameCharacter.mm in Sources */,
 				16F907D515126DCE00DB7FB6 /* GameControlLayer.m in Sources */,
 				16F907D615126DCE00DB7FB6 /* GameManager.m in Sources */,
 				16F907D715126DCE00DB7FB6 /* GameObject.mm in Sources */,
-				16F907D815126DCE00DB7FB6 /* GameObjectArray.m in Sources */,
+				16F907D815126DCE00DB7FB6 /* GameObjectArray.mm in Sources */,
 				16F907D915126DCE00DB7FB6 /* GameOverLayer.m in Sources */,
 				16F907DA15126DCE00DB7FB6 /* MainMenuLayer.m in Sources */,
 				16F907DB15126DCE00DB7FB6 /* MainMenuScene.m in Sources */,
-				16F907DC15126DCE00DB7FB6 /* Monster.m in Sources */,
-				16F907DD15126DCE00DB7FB6 /* RotatingMonster.m in Sources */,
+				16F907DC15126DCE00DB7FB6 /* Monster.mm in Sources */,
+				16F907DD15126DCE00DB7FB6 /* RotatingMonster.mm in Sources */,
 				16F907DE15126DCE00DB7FB6 /* Scene1.m in Sources */,
 				16F907DF15126DCE00DB7FB6 /* Scene1ActionLayer.mm in Sources */,
 				16F907E015126DCE00DB7FB6 /* Scene1BackgroundLayer.m in Sources */,
-				1686456515168486004ACBB8 /* MonsterBeam.m in Sources */,
+				1686456515168486004ACBB8 /* MonsterBeam.mm in Sources */,
 				16EE6103159A8BD500696BDE /* GB2ShapeCache.mm in Sources */,
-				16EE6104159A8BD500696BDE /* PESprite.mm in Sources */,
 				16EE6105159A8BD500696BDE /* ColoredCircleSprite.m in Sources */,
 				16EE6106159A8BD500696BDE /* ColoredSquareSprite.m in Sources */,
 				16EE6107159A8BD500696BDE /* SneakyButton.m in Sources */,
@@ -1539,6 +1556,8 @@
 				16D4FB27159A9699002891C9 /* CDOpenALSupport.m in Sources */,
 				16D4FB28159A9699002891C9 /* CocosDenshion.m in Sources */,
 				16D4FB29159A9699002891C9 /* SimpleAudioEngine.m in Sources */,
+				161D9D0B159D36C6000FB9F1 /* GLES-Render.mm in Sources */,
+				161D9D1A159D4739000FB9F1 /* PESprite.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1584,19 +1603,19 @@
 		16F9079D15126C6000DB7FB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cupid/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Cupid/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/** \"$(SRCROOT)/Libraries/PESprite\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1604,18 +1623,18 @@
 		16F9079E15126C6000DB7FB6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cupid/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Cupid/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/** \"$(SRCROOT)/Libraries/PESprite\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

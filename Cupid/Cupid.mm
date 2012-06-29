@@ -109,13 +109,6 @@
 	}
 }
 
-- (CGRect)adjustedBoundingBox
-{
-	return [CCSprite adjustedBoundingBoxForBoundingBox:[self boundingBox]
-												ofSize:CGSizeMake(26.0f, 65.0f)
-									   atStartingPoint:ccp(21.0, 6.0)];
-}
-
 #pragma mark - Private Methods
 
 - (void)initAnimations
@@ -126,7 +119,7 @@
 
 - (void)fly:(ccTime)deltaTime
 {
-	CGRect cupidBoundingBox = [self adjustedBoundingBox];
+	CGRect cupidBoundingBox = [self boundingBoxInWorld];
 	CGPoint scaledVelocity = ccp(0.0f, 150.0f);
     CGPoint oldPosition = self.position;
 	
@@ -135,7 +128,7 @@
 	CGPoint newPosition;
 	
 	if (top >= self.screenSize.height) {
-		newPosition = ccp(oldPosition.x, 290.0f);
+		newPosition = ccp(oldPosition.x, 245.0f);
 	} else {
 		newPosition = ccp(oldPosition.x, oldPosition.y + scaledVelocity.y * deltaTime);
 	}
