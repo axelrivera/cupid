@@ -43,30 +43,14 @@
 {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
 	
-	NSString *buttonUpName = nil;
-	NSString *buttonDownName = nil;
+	NSString *buttonUpName = @"buttonUp.png";
+	NSString *buttonDownName = @"buttonDown.png";
 	
-    CGRect flyButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
-    CGRect attackButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
-    
-    CGPoint flyButtonPosition;
-    CGPoint attackButtonPosition;
+	CGRect flyButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
+	CGRect attackButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
 	
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		buttonUpName = @"buttonUp-hd.png";
-		buttonDownName = @"buttonDown-hd.png";
-		flyButtonDimensions = CGRectMake(0.0f, 0.0f, 128.0f, 128.0f);
-		attackButtonDimensions = CGRectMake(0.0f, 0.0f, 128.0f, 128.0f);
-		flyButtonPosition = ccp(screenSize.width * 0.09f, screenSize.height * 0.12f);
-		attackButtonPosition = ccp(screenSize.width * 0.91f, screenSize.height * 0.12f);
-	} else {
-		buttonUpName = @"buttonUp.png";
-		buttonDownName = @"buttonDown.png";
-		flyButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
-		attackButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
-		flyButtonPosition = ccp(screenSize.width * 0.09f, screenSize.height * 0.12f);
-		attackButtonPosition = ccp(screenSize.width * 0.91f, screenSize.height * 0.12f);
-	}
+	CGPoint flyButtonPosition = ccp(screenSize.width * 0.09f, screenSize.height * 0.12f);
+	CGPoint attackButtonPosition = ccp(screenSize.width * 0.91f, screenSize.height * 0.12f);
     
     SneakyButtonSkinnedBase *flyButtonBase = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
     flyButtonBase.position = flyButtonPosition;

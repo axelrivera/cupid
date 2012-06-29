@@ -32,13 +32,7 @@
     CGPoint currentSpritePosition = self.position;
     CGSize levelSize = [[GameManager sharedGameManager] getDimensionsForcurrentScene];
     
-    float xOffset = 0.0f;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        xOffset = 30.0f;
-    } else {
-        xOffset = 24.0f;
-    }
+    float xOffset = 24.0f;
     
     if (currentSpritePosition.x < xOffset) {
         self.position = ccp(xOffset, currentSpritePosition.y);

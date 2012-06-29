@@ -27,10 +27,6 @@
 		
 		NSString *fontName = @"CupidFont.fnt";
 		
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			fontName = @"CupidFont-hd.fnt";
-		}
-		
 		titleLabel_ = [CCLabelBMFont labelWithString:@"Game Over" fntFile:fontName];
 		titleLabel_.scale = 0.7f;
 		titleLabel_.position = ccp(screenSize.width / 2.0, screenSize.height * 0.65);

@@ -17,9 +17,6 @@
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
 		
 		NSString *fileName = @"backgroundiPhone.png";
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			fileName = @"backgroundiPad.png";
-		}
 		
         CCSprite *backgroundImage = [CCSprite spriteWithFile:fileName];
         backgroundImage.position = CGPointMake(screenSize.width / 2.0f, screenSize.height / 2.0f);

@@ -25,11 +25,6 @@
 		NSString *backgroundName = @"backgroundiPhone.png";
 		NSString *fontName = @"CupidFont.fnt";
 		
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			backgroundName = @"backgroundiPad.png";
-			fontName = @"CupidFont-hd.fnt";
-		}
-		
 		CCSprite *background = [CCSprite spriteWithFile:backgroundName];
 		background.position = ccp(screenSize.width / 2.0f, screenSize.height / 2.0f);
 		[self addChild:background z:0];

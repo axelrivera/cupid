@@ -44,13 +44,8 @@
 	if (self) {
 		gameOver_ = NO;
 		
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet-iPhone-hd.plist"];
-			sceneSpriteBatchNode_ = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet-iPhone-hd.png"];
-		} else {
-			[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet-iPhone.plist"];
-			sceneSpriteBatchNode_ = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet-iPhone.png"];
-		}
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet-iPhone.plist"];
+		sceneSpriteBatchNode_ = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet-iPhone.png"];
 		
         [self addChild:sceneSpriteBatchNode_ z:5];
 		
