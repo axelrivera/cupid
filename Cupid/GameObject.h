@@ -15,13 +15,13 @@
 
 @interface GameObject : CCSprite
 
-@property (nonatomic, readonly) NSInteger health;
+@property (nonatomic, readonly) NSInteger hp;
 @property (nonatomic, readonly) b2World *world;
 @property (nonatomic, readonly) b2Body *body;
-@property (nonatomic, readonly) NSString *frameName;
+@property (nonatomic, readonly) NSString *defaultName;
 
 @property (nonatomic, assign) GameObjectType gameObjectType;
-@property (nonatomic, assign) CGFloat maxHealth;
+@property (nonatomic, assign) CGFloat maxHp;
 @property (nonatomic, assign) CGSize screenSize;
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) BOOL reactsToScreenBoundaries;
@@ -29,7 +29,7 @@
 // The Shape Name will be derived from the spriteFrameName
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName
 						world:(b2World *)world
-					maxHealth:(NSInteger)maxHealth;
+					maxHp:(NSInteger)maxHp;
 
 - (void)changeState:(CharacterStates)newState;
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects;

@@ -19,7 +19,7 @@
 	   spriteFrameName:(NSString *)spriteFrameName
 			 batchNode:(CCSpriteBatchNode *)batchNode
 				 world:(b2World *)world
-			 maxHealth:(NSInteger)maxHealth;
+				 maxHp:(NSInteger)maxHp;
 
 - (id)nextObject;
 

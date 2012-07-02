@@ -45,7 +45,7 @@
     switch (newState) {
 		case kStateSpawning:
 		{
-			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"monster_grey_1.png"]];
+			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
 			[self revive];
 			break;
 		}
@@ -53,10 +53,12 @@
 		{
 			[self runAction:
 			 [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:movingAnim_ restoreOriginalFrame:NO]]];
-			float xOffset = [self boundingBox].size.width / 2.0f;
-			float offScreenXPosition = (xOffset * -1) - 1;
+			CGSize winSize = [CCDirector sharedDirector].winSize;
+			float xOffset = -winSize.width - self.contentSize.width;
+			//float offScreenXPosition = (xOffset * -1) - 1;
 			action = [CCSequence actions:
-					  [CCMoveTo actionWithDuration:randomValueBetween(2.0f, 10.0f) position:ccp(offScreenXPosition, self.position.y)],
+					  //[CCMoveTo actionWithDuration:randomValueBetween(2.0f, 10.0f) position:ccp(offScreenXPosition, self.position.y)],
+					  [CCMoveBy actionWithDuration:randomValueBetween(2.0f, 10.0f) position:ccp(xOffset, 0)],
 					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
@@ -74,13 +76,6 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
-}
-
-- (CGRect)adjustedBoundingBox
-{
-	return [CCSprite adjustedBoundingBoxForBoundingBox:[self boundingBox]
-												ofSize:CGSizeMake(34.0f, 34.0f)
-									   atStartingPoint:CGPointMake(9.0f, 22.0f)];
 }
 
 #pragma mark - Private Methods

@@ -13,6 +13,13 @@
 #define kCupidSpriteZValue 500
 #define kCupidSpriteTagValue 0
 
+#define kCupidDefaultXPosition 100.0
+#define kCupidDefaultYPosition 150.0
+
+#define kCategoryCupid 0x1
+#define kCategoryCupidArrow 0x2
+#define kCategoryEnemy 0x4
+
 #define kMainMenuTagValue 10
 #define kSceneMenuTagValue 20
 

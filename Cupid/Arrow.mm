@@ -42,15 +42,20 @@
     
     switch (newState) {
 		case kStateSpawning:
-			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"arrow_1.png"]];
+			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
+			self.maxHp = 1;
 			[self revive];
 			break;
         case kStateTraveling:
+		{
+			CGSize winSize = [CCDirector sharedDirector].winSize;
+			CGFloat xOffset = winSize.width + [self boundingBox].size.width;
             action = [CCSequence actions:
-					  [CCMoveTo actionWithDuration:1.0f position:ccp(self.screenSize.width + 22.0f, self.position.y)],
+					  [CCMoveBy actionWithDuration:1.0 position:ccp(xOffset, 0)],
 					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
+		}
         default:
             CCLOG(@"Arrow: Unknown state %@", self.characterState);
             break;
@@ -63,13 +68,6 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
-}
-
-- (CGRect)adjustedBoundingBox
-{
-	return [CCSprite adjustedBoundingBoxForBoundingBox:[self boundingBox]
-												ofSize:CGSizeMake(19.0f, 4.0f)
-									   atStartingPoint:ccp(2.0f, 3.0f)];
 }
 
 #pragma mark - Private Methods

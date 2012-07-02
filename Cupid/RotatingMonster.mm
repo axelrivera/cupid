@@ -38,7 +38,7 @@
 	switch (newState) {
 		case kStateSpawning:
 		{
-			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"monster_blue.png"]];
+			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
 			[self revive];
 			break;
 		}
@@ -73,24 +73,17 @@
 {
 }
 
-- (CGRect)adjustedBoundingBox
-{
-	return [CCSprite adjustedBoundingBoxForBoundingBox:[self boundingBox]
-												ofSize:CGSizeMake(65.0f, 40.0f)
-									   atStartingPoint:CGPointMake(3.0f, 19.0f)];
-}
-
 #pragma mark - Selector Methods
 
 - (void)shootBeam
 {
 	CGRect boundingBox = [self boundingBox];
     
-    float xPosition = boundingBox.origin.x + (boundingBox.size.width * 0.6484f);
-    float yPosition = boundingBox.origin.y + (boundingBox.size.height * 0.4715f);
-    
-    CGPoint beamFiringPosition = ccp(xPosition, yPosition);
-    [self.delegate createMonsterBeamWithPosition:beamFiringPosition];
+    float xPosition = boundingBox.origin.x + (boundingBox.size.width * 0.2f);
+	float yPosition = boundingBox.origin.y + (boundingBox.size.height * 0.5f);
+	
+	CGPoint beamFiringPosition = ccp(xPosition, yPosition);
+	[self.delegate createMonsterBeamWithPosition:beamFiringPosition];
 }
 
 @end

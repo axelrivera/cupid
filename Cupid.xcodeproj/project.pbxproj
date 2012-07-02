@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		1601A90F159E508400793C5A /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1601A90E159E508400793C5A /* GLES-Render.mm */; };
 		1601A916159E57CA00793C5A /* ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1601A914159E57CA00793C5A /* ShapeCache.mm */; };
-		161D9D08159D2E95000FB9F1 /* shapes-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */; };
 		1642F4D71512821800DA67BE /* spritesheet-iPhone-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */; };
 		1642F4D81512821800DA67BE /* spritesheet-iPhone-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */; };
 		1642F4D91512821800DA67BE /* spritesheet-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */; };
 		1642F4DA1512821800DA67BE /* spritesheet-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D61512821800DA67BE /* spritesheet-iPhone.png */; };
 		1642F4E3151285F100DA67BE /* MonsterBeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4E2151285F100DA67BE /* MonsterBeam.plist */; };
+		164F5A2515A09E1A006DBD30 /* shapes-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 164F5A2415A09E1A006DBD30 /* shapes-iPhone.plist */; };
+		165B301415A12E5600E8DA5B /* dead.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B300F15A12E5600E8DA5B /* dead.wav */; };
+		165B301515A12E5600E8DA5B /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B301015A12E5600E8DA5B /* explosion.wav */; };
+		165B301615A12E5600E8DA5B /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B301115A12E5600E8DA5B /* laser.wav */; };
+		165B301715A12E5600E8DA5B /* Positive_Boy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 165B301215A12E5600E8DA5B /* Positive_Boy.mp3 */; };
+		165B301B15A1332A00E8DA5B /* shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B301A15A1332A00E8DA5B /* shoot.wav */; };
 		1686456515168486004ACBB8 /* MonsterBeam.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1686456415168486004ACBB8 /* MonsterBeam.mm */; };
 		16D4FB26159A9699002891C9 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB1E159A9699002891C9 /* CDAudioManager.m */; };
 		16D4FB27159A9699002891C9 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB21159A9699002891C9 /* CDOpenALSupport.m */; };
@@ -208,12 +213,17 @@
 		1601A913159E57CA00793C5A /* ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeCache.h; sourceTree = "<group>"; };
 		1601A914159E57CA00793C5A /* ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapeCache.mm; sourceTree = "<group>"; };
 		1601A915159E57CA00793C5A /* SimpleContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleContactListener.h; sourceTree = "<group>"; };
-		161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "shapes-iPhone.plist"; sourceTree = "<group>"; };
 		1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone-hd.plist"; sourceTree = "<group>"; };
 		1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spritesheet-iPhone-hd.png"; sourceTree = "<group>"; };
 		1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone.plist"; sourceTree = "<group>"; };
 		1642F4D61512821800DA67BE /* spritesheet-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spritesheet-iPhone.png"; sourceTree = "<group>"; };
 		1642F4E2151285F100DA67BE /* MonsterBeam.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MonsterBeam.plist; sourceTree = "<group>"; };
+		164F5A2415A09E1A006DBD30 /* shapes-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "shapes-iPhone.plist"; sourceTree = "<group>"; };
+		165B300F15A12E5600E8DA5B /* dead.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dead.wav; sourceTree = "<group>"; };
+		165B301015A12E5600E8DA5B /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		165B301115A12E5600E8DA5B /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
+		165B301215A12E5600E8DA5B /* Positive_Boy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Positive_Boy.mp3; sourceTree = "<group>"; };
+		165B301A15A1332A00E8DA5B /* shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shoot.wav; sourceTree = "<group>"; };
 		1686456315168486004ACBB8 /* MonsterBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBeam.h; sourceTree = "<group>"; };
 		1686456415168486004ACBB8 /* MonsterBeam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonsterBeam.mm; sourceTree = "<group>"; };
 		16D4FB1D159A9699002891C9 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -596,15 +606,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		161D9D06159D2E95000FB9F1 /* Shapes */ = {
-			isa = PBXGroup;
-			children = (
-				161D9D07159D2E95000FB9F1 /* shapes-iPhone.plist */,
-			);
-			name = Shapes;
-			path = Resources/Shapes;
-			sourceTree = "<group>";
-		};
 		1642F4D21512821800DA67BE /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +651,28 @@
 				16F907C015126DCE00DB7FB6 /* GameOverLayer.m */,
 			);
 			name = Shared;
+			sourceTree = "<group>";
+		};
+		164F5A2615A09E3F006DBD30 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				164F5A2415A09E1A006DBD30 /* shapes-iPhone.plist */,
+			);
+			name = Shapes;
+			path = Resources/Shapes;
+			sourceTree = "<group>";
+		};
+		165B300E15A12E5600E8DA5B /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				165B301A15A1332A00E8DA5B /* shoot.wav */,
+				165B300F15A12E5600E8DA5B /* dead.wav */,
+				165B301015A12E5600E8DA5B /* explosion.wav */,
+				165B301115A12E5600E8DA5B /* laser.wav */,
+				165B301215A12E5600E8DA5B /* Positive_Boy.mp3 */,
+			);
+			name = Sounds;
+			path = Resources/Sounds;
 			sourceTree = "<group>";
 		};
 		16D4FB1C159A9699002891C9 /* CocosDenshion */ = {
@@ -1148,7 +1171,8 @@
 		16F9063C15126C5C00DB7FB6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				161D9D06159D2E95000FB9F1 /* Shapes */,
+				165B300E15A12E5600E8DA5B /* Sounds */,
+				164F5A2615A09E3F006DBD30 /* Shapes */,
 				1642F4D21512821800DA67BE /* Sprites */,
 				16F907F41512770300DB7FB6 /* Background */,
 				16F907F81512770300DB7FB6 /* Default@2x.png */,
@@ -1202,7 +1226,6 @@
 		16F907A115126D5800DB7FB6 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				16F907B115126DCE00DB7FB6 /* CommonProtocols.h */,
 				16F907B215126DCE00DB7FB6 /* Constants.h */,
 			);
 			name = Constants;
@@ -1239,6 +1262,7 @@
 		16F907A815126D8D00DB7FB6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				16F907B115126DCE00DB7FB6 /* CommonProtocols.h */,
 				1601A913159E57CA00793C5A /* ShapeCache.h */,
 				1601A914159E57CA00793C5A /* ShapeCache.mm */,
 				1601A915159E57CA00793C5A /* SimpleContactListener.h */,
@@ -1379,7 +1403,12 @@
 				1642F4D91512821800DA67BE /* spritesheet-iPhone.plist in Resources */,
 				1642F4DA1512821800DA67BE /* spritesheet-iPhone.png in Resources */,
 				1642F4E3151285F100DA67BE /* MonsterBeam.plist in Resources */,
-				161D9D08159D2E95000FB9F1 /* shapes-iPhone.plist in Resources */,
+				164F5A2515A09E1A006DBD30 /* shapes-iPhone.plist in Resources */,
+				165B301415A12E5600E8DA5B /* dead.wav in Resources */,
+				165B301515A12E5600E8DA5B /* explosion.wav in Resources */,
+				165B301615A12E5600E8DA5B /* laser.wav in Resources */,
+				165B301715A12E5600E8DA5B /* Positive_Boy.mp3 in Resources */,
+				165B301B15A1332A00E8DA5B /* shoot.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

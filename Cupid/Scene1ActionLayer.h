@@ -18,4 +18,7 @@
 
 - (void)connectControlsWithFlyButton:(SneakyButton *)flyButton andAttackButton:(SneakyButton *)attackButton;
 
+- (void)beginContact:(b2Contact *)contact;
+- (void)endContact:(b2Contact *)contact;
+
 @end

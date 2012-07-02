@@ -58,7 +58,7 @@
     
     switch (newState) {
         case kStateIdle:
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"cupid_1.png"]];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
             break;
 		case kStateTraveling:
 			action = [CCRepeatForever actionWithAction:
@@ -119,7 +119,7 @@
 
 - (void)fly:(ccTime)deltaTime
 {
-	CGRect cupidBoundingBox = [self adjustedBoundingBox];
+	CGRect cupidBoundingBox = [self boundingBox];
 	CGPoint scaledVelocity = ccp(0.0f, 150.0f);
     CGPoint oldPosition = self.position;
 	
@@ -128,7 +128,7 @@
 	CGPoint newPosition;
 	
 	if (top >= self.screenSize.height) {
-		newPosition = ccp(oldPosition.x, 245.0f);
+		newPosition = ccp(oldPosition.x, 285.0f);
 	} else {
 		newPosition = ccp(oldPosition.x, oldPosition.y + scaledVelocity.y * deltaTime);
 	}
@@ -157,10 +157,10 @@
 - (void)shootArrow
 {
     CGRect boundingBox = [self boundingBox];
-    
-    float xPosition = boundingBox.origin.x + (boundingBox.size.width * 0.6484f);
-    float yPosition = boundingBox.origin.y + (boundingBox.size.height * 0.4715f);
-    
+	
+    float xPosition = boundingBox.origin.x + (boundingBox.size.width * 0.75f);
+    float yPosition = boundingBox.origin.y + (boundingBox.size.height * 0.5f);
+	
     CGPoint arrowFiringPosition = ccp(xPosition, yPosition);
     [self.delegate createArrowWithPosition:arrowFiringPosition];
 }

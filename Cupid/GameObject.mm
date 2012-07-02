@@ -18,19 +18,19 @@
 
 @implementation GameObject
 
-@synthesize health = _health;
+@synthesize hp = _hp;
 @synthesize world = _world;
 @synthesize body = _body;
-@synthesize frameName = _frameName;
+@synthesize defaultName = _defaultName;
 @synthesize gameObjectType = _gameObjectType;
-@synthesize maxHealth = _maxHealth;
+@synthesize maxHp = _maxHp;
 @synthesize screenSize = _screenSize;
 @synthesize isActive = _isActive;
 @synthesize reactsToScreenBoundaries = _reactsToScreenBoundaries;
 
 - (id)initWithSpriteFrameName:(NSString *)spriteFrameName
 						world:(b2World *)world
-					maxHealth:(NSInteger)maxHealth
+					maxHp:(NSInteger)maxHp
 {
 	self = [super initWithSpriteFrameName:spriteFrameName];
 	if (self) {
@@ -38,17 +38,17 @@
         _screenSize = [CCDirector sharedDirector].winSize;
         _isActive = YES;
         _gameObjectType = kObjectTypeNone;
-		_health = maxHealth;
-		_maxHealth = maxHealth;
+		_hp = maxHp;
+		_maxHp = maxHp;
 		_world = world;
-		_frameName = [spriteFrameName retain];
+		_defaultName = [spriteFrameName copy];
 	}
 	return self;
 }
 
 - (void)dealloc
 {
-	[_frameName release];
+	[_defaultName release];
 	[super dealloc];
 }
 
@@ -66,12 +66,12 @@
 
 - (BOOL)dead
 {
-    return self.maxHealth == 0;
+    return self.maxHp == 0;
 }
 
 - (void)destroy
 {    
-    self.maxHealth = 0;
+    self.maxHp = 0;
     [self stopAllActions];
     [self runAction:
      [CCSequence actions:
@@ -83,7 +83,7 @@
 
 - (void)revive
 {
-    _health = self.maxHealth;
+    _hp = self.maxHp;
     [self stopAllActions];
     self.visible = YES;
     self.opacity = 255.0;
@@ -91,10 +91,10 @@
 }
 
 - (void)takeHit {
-    if (self.health > 0) {
-        _health--;
+    if (self.hp > 0) {
+        _hp--;
     }
-    if (self.health == 0) {
+    if (self.hp == 0) {
         [self destroy];
     } 
 }
@@ -164,7 +164,7 @@
     bodyDef.position.Set(self.position.x / PTM_RATIO, self.position.y / PTM_RATIO);
     bodyDef.userData = self;
     _body = _world->CreateBody(&bodyDef);
-	NSString *shapeName = [self.frameName stringByDeletingPathExtension];
+	NSString *shapeName = [self.defaultName stringByDeletingPathExtension];
     [[ShapeCache sharedShapeCache] addFixturesToBody:_body forShapeName:shapeName scale:self.scale];
     [self setAnchorPoint:[[ShapeCache sharedShapeCache] anchorPointForShape:shapeName]];
 }

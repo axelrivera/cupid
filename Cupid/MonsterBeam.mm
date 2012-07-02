@@ -49,18 +49,24 @@
     switch (newState) {
 		case kStateSpawning:
 			action = [CCAnimate actionWithAnimation:self.firingAnim restoreOriginalFrame:NO];
+			self.maxHp = 1;
 			[self revive];
 			break;
         case kStateTraveling:
+		{
 			[self runAction:
 			 [CCRepeatForever actionWithAction:
 			  [CCAnimate actionWithAnimation:self.firingAnim restoreOriginalFrame:NO]]];
 			
+			CGSize winSize = [CCDirector sharedDirector].winSize;
+			CGFloat velocity = (winSize.width + ([self boundingBox].size.width / 2.0)) / 1.5f;
+			CGFloat duration = self.position.x / velocity;
             action = [CCSequence actions:
-					  [CCMoveTo actionWithDuration:1.5f position:ccp(0.0 - 22.0f, self.position.y)],
+					  [CCMoveTo actionWithDuration:duration position:ccp(0.0 - 22.0f, self.position.y)],
 					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
+		}
         default:
             CCLOG(@"Arrow: Unknown state %@", self.characterState);
             break;
@@ -74,11 +80,6 @@
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
 	
-}
-
-- (CGRect)adjustedBoundingBox
-{
-	return [super adjustedBoundingBox];
 }
 
 #pragma mark - Private Methods

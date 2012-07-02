@@ -21,7 +21,7 @@
 	   spriteFrameName:(NSString *)spriteFrameName
 			 batchNode:(CCSpriteBatchNode *)batchNode
 				 world:(b2World *)world
-			 maxHealth:(NSInteger)maxHealth
+			 maxHp:(NSInteger)maxHp
 {
 	Class myClass = NSClassFromString(className);
 	NSAssert(![myClass isKindOfClass:[GameObject class]], @"Game Object: invalid object");
@@ -31,7 +31,7 @@
 		_nextItem = 0;
 		_array = [[CCArray alloc] initWithCapacity:capacity];
 		for (int i = 0; i < capacity; i++) {
-			id myObject = [[[myClass alloc] initWithSpriteFrameName:spriteFrameName world:world maxHealth:maxHealth] autorelease];
+			id myObject = [[[myClass alloc] initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp] autorelease];
 			[myObject setVisible:NO];
 			[batchNode addChild:myObject];
 			[_array addObject:myObject];
