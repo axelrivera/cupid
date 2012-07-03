@@ -173,7 +173,7 @@
 	
 	_beamArray = [[GameObjectArray alloc] initWithCapacity:20
 												 className:NSStringFromClass([MonsterBeam class])
-										   spriteFrameName:@"beam_1.png"
+										   spriteFrameName:@"laserbeam_red.png"
 												 batchNode:_sceneSpriteBatchNode
 													 world:_world
 													 maxHp:1];

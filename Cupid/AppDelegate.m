@@ -15,9 +15,10 @@
 
 @implementation AppDelegate
 
-@synthesize window;
+@synthesize window = _window;
+@synthesize viewController = _viewController;
 
-- (void) removeStartupFlicker
+- (void)removeStartupFlicker
 {
 	//
 	// THIS CODE REMOVES THE STARTUP FLICKER
@@ -41,7 +42,7 @@
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	// Try to use CADisplayLink director
 	// if it fails (SDK < 3.1) use the default director
@@ -52,8 +53,10 @@
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	// Init the View Controller
-	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+	RootViewController *viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
+	self.viewController = viewController;
+	[viewController release];
 	
 	//
 	// Create the EAGLView manually
@@ -61,7 +64,7 @@
 	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
 	//
 	//
-	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
+	EAGLView *glView = [EAGLView viewWithFrame:[self.window bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
@@ -99,9 +102,9 @@
 	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	[self.window addSubview: viewController.view];
 	
-	[window makeKeyAndVisible];
+	[self.window makeKeyAndVisible];
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
@@ -139,13 +142,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	CCDirector *director = [CCDirector sharedDirector];
-	
 	[[director openGLView] removeFromSuperview];
-	
-	[viewController release];
-	
-	[window release];
-	
+	self.viewController = nil;
+	self.window = nil;
 	[director end];	
 }
 
@@ -155,7 +154,8 @@
 
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];
-	[window release];
+	[_viewController release];
+	[_window release];
 	[super dealloc];
 }
 

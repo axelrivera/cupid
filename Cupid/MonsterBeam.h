@@ -11,7 +11,4 @@
 
 @interface MonsterBeam : GameCharacter
 
-@property (nonatomic, retain) CCAnimation *firingAnim;
-@property (nonatomic, retain) CCAnimation *travelingAnim;
-
 @end

@@ -7,7 +7,7 @@
             <key>arrow_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{236,51},{20,7}}</string>
+                <string>{{236,29},{20,7}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -16,58 +16,6 @@
                 <string>{{1,1},{20,7}}</string>
                 <key>sourceSize</key>
                 <string>{22,9}</string>
-            </dict>
-            <key>beam_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{236,40},{9,10}}</string>
-                <key>offset</key>
-                <string>{4,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{8,4},{9,10}}</string>
-                <key>sourceSize</key>
-                <string>{17,18}</string>
-            </dict>
-            <key>beam_2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{236,27},{11,16}}</string>
-                <key>offset</key>
-                <string>{3,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{6,1},{11,16}}</string>
-                <key>sourceSize</key>
-                <string>{17,18}</string>
-            </dict>
-            <key>beam_3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{236,2},{15,18}}</string>
-                <key>offset</key>
-                <string>{1,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{2,0},{15,18}}</string>
-                <key>sourceSize</key>
-                <string>{17,18}</string>
-            </dict>
-            <key>beam_4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{236,19},{17,6}}</string>
-                <key>offset</key>
-                <string>{0,-1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,7},{17,6}}</string>
-                <key>sourceSize</key>
-                <string>{17,18}</string>
             </dict>
             <key>bg_cloud_1.png</key>
             <dict>
@@ -186,6 +134,19 @@
                 <key>sourceSize</key>
                 <string>{64,79}</string>
             </dict>
+            <key>laserbeam_red.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{236,2},{25,10}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{25,10}}</string>
+                <key>sourceSize</key>
+                <string>{29,12}</string>
+            </dict>
             <key>monster_blue.png</key>
             <dict>
                 <key>frame</key>
@@ -235,7 +196,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a510cdff0a2d446ddfbc2a6b2a14edce$</string>
+            <string>$TexturePacker:SmartUpdate:86efbb02a516773e527a79fdd623b89b$</string>
             <key>textureFileName</key>
             <string>spritesheet-iPhone.png</string>
         </dict>

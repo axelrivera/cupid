@@ -46,8 +46,8 @@
 	NSString *buttonUpName = @"buttonUp.png";
 	NSString *buttonDownName = @"buttonDown.png";
 	
-	CGRect flyButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
-	CGRect attackButtonDimensions = CGRectMake(0.0f, 0.0f, 64.0f, 64.0f);
+	CGRect flyButtonDimensions = CGRectMake(0.0f, 0.0f, 75.0f, 75.0f);
+	CGRect attackButtonDimensions = CGRectMake(0.0f, 0.0f, 75.0f, 75.0f);
 	
 	CGPoint flyButtonPosition = ccp(screenSize.width * 0.09f, screenSize.height * 0.12f);
 	CGPoint attackButtonPosition = ccp(screenSize.width * 0.91f, screenSize.height * 0.12f);

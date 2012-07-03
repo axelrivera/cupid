@@ -43,7 +43,7 @@ typedef enum {
 #define kMonsterBlueShapeName @"monster_blue"
 #define kMonsterGreyShapeName @"monster_grey_1"
 #define kArrowShapeName @"arrow_1"
-#define kBeamShapeName @"beam_1"
+#define kBeamShapeName @"laserbeam_red"
 
 // Debut Enemy States with Labels (0 = OFF, 1 = ON)
 #define ENEMY_STATE_DEBUG 0
