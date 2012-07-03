@@ -9,7 +9,6 @@
 #import "Scene1ActionLayer.h"
 
 #import "SimpleAudioEngine.h"
-#import "Box2D.h"
 #import "GLES-Render.h"
 #import "ShapeCache.h"
 #import "SimpleContactListener.h"
@@ -18,6 +17,8 @@
 #import "Monster.h"
 #import "RotatingMonster.h"
 #import "MonsterBeam.h"
+#import "GameObjectArray.h"
+#import "ParticleSystemArray.h"
 
 @interface Scene1ActionLayer (Private)
 
@@ -25,7 +26,6 @@
 - (void)setupArrays;
 - (void)updateMonsters:(ccTime)deltaTime;
 - (void)updateRotatingMonsters:(ccTime)deltaTime;
-- (void)updateCollisions:(ccTime)deltaTime;
 - (void)updateBox2D:(ccTime)deltaTime;
 - (void)createCloud;
 - (void)resetCloudWithNode:(id)node;
@@ -47,6 +47,7 @@
 	GameObjectArray *_rotatingMonsterArray;
 	GameObjectArray *_arrowArray;
 	GameObjectArray *_beamArray;
+	ParticleSystemArray *_explosionsArray;
 	BOOL _gameOver;
 	
 	// Box2D
@@ -102,6 +103,7 @@
 	[_rotatingMonsterArray release];
 	[_arrowArray release];
 	[_beamArray release];
+	[_explosionsArray release];
 	[super dealloc];
 }
 
@@ -115,6 +117,7 @@
 	[cupid updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];
 	
 	if (cupid.characterState == kStateDead && [cupid numberOfRunningActions] == 0) {
+		[[SimpleAudioEngine sharedEngine] playEffect:@"dead.wav"];
 		_gameOver = YES;
 		[self loadGameOverLayer];
 		return;
@@ -122,7 +125,6 @@
 	
 	[self updateMonsters:deltaTime];
 	[self updateRotatingMonsters:deltaTime];
-	//[self updateCollisions:deltaTime];
 	[self updateBox2D:deltaTime];
 }
 
@@ -175,6 +177,8 @@
 												 batchNode:_sceneSpriteBatchNode
 													 world:_world
 													 maxHp:1];
+	
+	_explosionsArray = [[ParticleSystemArray alloc] initWithFile:@"Explosion.plist" capacity:3 parent:self];
 }
 
 - (void)createCloud
@@ -278,58 +282,6 @@
     }	
 }
 
-- (void)updateCollisions:(ccTime)deltaTime
-{
-//	for (Arrow *arrow in arrowArray_.array) {
-//        if (!arrow.visible) continue;
-//        
-//        for (Monster *monster in monsterArray_.array) {
-//            if (!monster.visible) continue;
-//            
-//            if ([monster intersectsTarget:arrow]) {
-//                [monster takeHit];
-//				if ([monster isDead]) {
-//					monster.visible = NO;
-//				}
-//                arrow.visible = NO;
-//                break;
-//            }   
-//        }
-//		
-//		for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
-//            if (!rotatingMonster.visible) continue;
-//            
-//            if ([rotatingMonster intersectsTarget:arrow]) {
-//                [rotatingMonster takeHit];
-//				if ([rotatingMonster isDead]) {
-//					//rotatingMonster.visible = NO;
-//					[rotatingMonster destroy];
-//				}
-//                arrow.visible = NO;
-//                break;
-//            }   
-//        } 
-//    }
-//	
-//	Cupid *cupid = (Cupid *)[sceneSpriteBatchNode_ getChildByTag:kCupidSpriteTagValue];
-//	
-//	for (Monster *monster in monsterArray_.array) {
-//		if (!monster.visible) continue;
-//		
-//		if ([monster intersectsTarget:cupid]) {
-//			[cupid changeState:kStateDead];
-//		}
-//	}
-//	
-//	for (RotatingMonster *rotatingMonster in rotatingMonsterArray_.array) {
-//		if (!rotatingMonster.visible) continue;
-//		
-//		if ([rotatingMonster intersectsTarget:cupid]) {
-//			[cupid changeState:kStateDead];
-//		}
-//	}
-}
-
 - (void)updateBox2D:(ccTime)deltaTime
 {
 	_world->Step(deltaTime, 1, 1);
@@ -430,11 +382,11 @@
     GameObject *spriteB = (GameObject *)bodyB->GetUserData();
     
     if (!spriteA.visible || !spriteB.visible) return;
-    
-    b2WorldManifold manifold;
-    contact->GetWorldManifold(&manifold);
-    b2Vec2 b2ContactPoint = manifold.points[0];
-    //CGPoint contactPoint = ccp(b2ContactPoint.x * PTM_RATIO, b2ContactPoint.y * PTM_RATIO);
+	
+	b2WorldManifold manifold;
+	contact->GetWorldManifold(&manifold);
+	b2Vec2 b2ContactPoint = manifold.points[0];
+	CGPoint contactPoint = ccp(b2ContactPoint.x * PTM_RATIO, b2ContactPoint.y * PTM_RATIO);
     
     //CGSize winSize = [CCDirector sharedDirector].winSize;
     
@@ -453,6 +405,18 @@
         if (![enemy dead] && ![arrow dead]) {
 			[[SimpleAudioEngine sharedEngine] playEffect:@"explosion.wav"];
             [enemy takeHit];
+			if ([enemy dead]) {
+				CCParticleSystemQuad *explosion = [_explosionsArray nextParticleSystem];
+				explosion.scale = 0.2;
+				explosion.position = contactPoint;
+				[explosion resetSystem];
+			} else {
+				CCParticleSystemQuad *explosion = [_explosionsArray nextParticleSystem];
+				explosion.scale *= 0.1;
+				explosion.position = contactPoint;
+				[explosion resetSystem];
+			}
+			
             [arrow takeHit];           
         }
     }
@@ -471,10 +435,6 @@
 
         Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
 		[cupid takeHit];
-		if ([cupid dead]) {
-			[[SimpleAudioEngine sharedEngine] playEffect:@"dead.wav"];
-			[cupid changeState:kStateDead];
-		}
     }    
 }
 

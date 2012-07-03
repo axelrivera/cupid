@@ -109,6 +109,14 @@
 	}
 }
 
+- (void)takeHit
+{
+	[super takeHit];
+	if ([self dead]) {
+		[self changeState:kStateDead];
+	}
+}
+
 #pragma mark - Private Methods
 
 - (void)initAnimations

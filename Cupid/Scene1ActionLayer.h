@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Box2D.h"
 #import "CommonProtocols.h"
 #import "GameManager.h"
 #import "GameControlLayer.h"
-#import "GameObjectArray.h"
 #import "GameOverLayer.h"
 
 @interface Scene1ActionLayer : CCLayer <GameplayLayerDelegate, GameOverLayerDelegate>

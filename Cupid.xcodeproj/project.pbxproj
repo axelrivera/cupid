@@ -20,6 +20,8 @@
 		165B301615A12E5600E8DA5B /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B301115A12E5600E8DA5B /* laser.wav */; };
 		165B301715A12E5600E8DA5B /* Positive_Boy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 165B301215A12E5600E8DA5B /* Positive_Boy.mp3 */; };
 		165B301B15A1332A00E8DA5B /* shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 165B301A15A1332A00E8DA5B /* shoot.wav */; };
+		165B301E15A26BC700E8DA5B /* ParticleSystemArray.mm in Sources */ = {isa = PBXBuildFile; fileRef = 165B301D15A26BC700E8DA5B /* ParticleSystemArray.mm */; };
+		165B302515A26FCB00E8DA5B /* Explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 165B302415A26FCB00E8DA5B /* Explosion.plist */; };
 		1686456515168486004ACBB8 /* MonsterBeam.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1686456415168486004ACBB8 /* MonsterBeam.mm */; };
 		16D4FB26159A9699002891C9 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB1E159A9699002891C9 /* CDAudioManager.m */; };
 		16D4FB27159A9699002891C9 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB21159A9699002891C9 /* CDOpenALSupport.m */; };
@@ -224,6 +226,9 @@
 		165B301115A12E5600E8DA5B /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
 		165B301215A12E5600E8DA5B /* Positive_Boy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Positive_Boy.mp3; sourceTree = "<group>"; };
 		165B301A15A1332A00E8DA5B /* shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shoot.wav; sourceTree = "<group>"; };
+		165B301C15A26BC700E8DA5B /* ParticleSystemArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystemArray.h; sourceTree = "<group>"; };
+		165B301D15A26BC700E8DA5B /* ParticleSystemArray.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParticleSystemArray.mm; sourceTree = "<group>"; };
+		165B302415A26FCB00E8DA5B /* Explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Explosion.plist; sourceTree = "<group>"; };
 		1686456315168486004ACBB8 /* MonsterBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBeam.h; sourceTree = "<group>"; };
 		1686456415168486004ACBB8 /* MonsterBeam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonsterBeam.mm; sourceTree = "<group>"; };
 		16D4FB1D159A9699002891C9 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -673,6 +678,15 @@
 			);
 			name = Sounds;
 			path = Resources/Sounds;
+			sourceTree = "<group>";
+		};
+		165B302315A26FCB00E8DA5B /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				165B302415A26FCB00E8DA5B /* Explosion.plist */,
+			);
+			name = Particles;
+			path = Resources/Particles;
 			sourceTree = "<group>";
 		};
 		16D4FB1C159A9699002891C9 /* CocosDenshion */ = {
@@ -1171,6 +1185,7 @@
 		16F9063C15126C5C00DB7FB6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				165B302315A26FCB00E8DA5B /* Particles */,
 				165B300E15A12E5600E8DA5B /* Sounds */,
 				164F5A2615A09E3F006DBD30 /* Shapes */,
 				1642F4D21512821800DA67BE /* Sprites */,
@@ -1274,6 +1289,8 @@
 				16F907B015126DCE00DB7FB6 /* Common.m */,
 				16F907BD15126DCE00DB7FB6 /* GameObjectArray.h */,
 				16F907BE15126DCE00DB7FB6 /* GameObjectArray.mm */,
+				165B301C15A26BC700E8DA5B /* ParticleSystemArray.h */,
+				165B301D15A26BC700E8DA5B /* ParticleSystemArray.mm */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1409,6 +1426,7 @@
 				165B301615A12E5600E8DA5B /* laser.wav in Resources */,
 				165B301715A12E5600E8DA5B /* Positive_Boy.mp3 in Resources */,
 				165B301B15A1332A00E8DA5B /* shoot.wav in Resources */,
+				165B302515A26FCB00E8DA5B /* Explosion.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1575,6 +1593,7 @@
 				16D4FB29159A9699002891C9 /* SimpleAudioEngine.m in Sources */,
 				1601A90F159E508400793C5A /* GLES-Render.mm in Sources */,
 				1601A916159E57CA00793C5A /* ShapeCache.mm in Sources */,
+				165B301E15A26BC700E8DA5B /* ParticleSystemArray.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
