@@ -1640,6 +1640,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Axel Rivera (7GJQFAYSB9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1651,6 +1652,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93B0E3DE-8A26-4941-8168-589ACCD71F04";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/** \"$(SRCROOT)/Libraries/PESprite\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1660,6 +1662,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Axel Rivera";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cupid/Prefix.pch;
@@ -1670,6 +1673,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18866A55-EB6D-4755-B41D-83F6584F12D7";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/** \"$(SRCROOT)/Libraries/PESprite\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
