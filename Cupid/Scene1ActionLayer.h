@@ -14,7 +14,11 @@
 #import "GameControlLayer.h"
 #import "GameOverLayer.h"
 
+@class GameScoreLayer;
+
 @interface Scene1ActionLayer : CCLayer <GameplayLayerDelegate, GameOverLayerDelegate>
+
+@property (nonatomic, assign) GameScoreLayer *gameScoreLayer;
 
 - (void)connectControlsWithFlyButton:(SneakyButton *)flyButton andAttackButton:(SneakyButton *)attackButton;
 

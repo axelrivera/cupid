@@ -186,6 +186,19 @@
                 <key>sourceSize</key>
                 <string>{61,73}</string>
             </dict>
+            <key>powerup.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,265},{55,51}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{55,51}}</string>
+                <key>sourceSize</key>
+                <string>{55,55}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -196,7 +209,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:86efbb02a516773e527a79fdd623b89b$</string>
+            <string>$TexturePacker:SmartUpdate:3410c154d8ff7ebf4008bb08049ec300$</string>
             <key>textureFileName</key>
             <string>spritesheet-iPhone.png</string>
         </dict>

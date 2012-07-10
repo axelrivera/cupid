@@ -18,9 +18,9 @@
 
 @synthesize movingAnim = movingAnim_;
 
-- (id)init
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName world:(b2World *)world maxHp:(NSInteger)maxHp
 {
-	self = [super init];
+	self = [super initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp];
 	if (self) {
 		self.gameObjectType = kMonsterType;
 		[self initAnimations];

@@ -18,7 +18,7 @@
 		<key>delay</key>
 		<string>0.2</string>
 		<key>animationFrames</key>
-		<string>1,3,4</string>
+		<string>4,4</string>
 	</dict>
 </dict>
 </plist>

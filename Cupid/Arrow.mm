@@ -8,18 +8,11 @@
 
 #import "Arrow.h"
 
-@interface Arrow (Private)
-
-- (void)initAnimations;
-- (BOOL)isOutsideOfScreen;
-
-@end
-
 @implementation Arrow
 
-- (id)init
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName world:(b2World *)world maxHp:(NSInteger)maxHp
 {
-    self = [super init];
+    self = [super initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp];
     if (self) {
         self.gameObjectType = kArrowType;
     }
@@ -68,18 +61,7 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
-}
-
-#pragma mark - Private Methods
-
-- (BOOL)isOutsideOfScreen
-{
-    CGPoint currentSpritePosition = self.position;
-    if (currentSpritePosition.x > self.screenSize.width) {
-        [self changeState:kStateDead];
-        return YES;
-    }
-    return NO;
+	// Update Method
 }
 
 @end

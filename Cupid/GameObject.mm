@@ -156,7 +156,7 @@
 
 #pragma mark - Private Methods
 
-- (void) createBody
+- (void)createBody
 {    
     [self destroyBody];
     b2BodyDef bodyDef;
@@ -169,7 +169,7 @@
     [self setAnchorPoint:[[ShapeCache sharedShapeCache] anchorPointForShape:shapeName]];
 }
 
-- (void) destroyBody
+- (void)destroyBody
 {
     if (_body != NULL) {
         _world->DestroyBody(_body);

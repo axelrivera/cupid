@@ -21,18 +21,20 @@
 @implementation Cupid
 
 @synthesize delegate = delegate_;
-@synthesize isMoving = isMoving_;
+@synthesize invincible = _invincible;
+@synthesize moving = _moving;
 @synthesize flappingAnim = flappingAnim_;
 @synthesize shootingAnim = shootingAnim_; 
 @synthesize flyButton = flyButton_;
 @synthesize attackButton = attackButton_;
 
-- (id)init
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName world:(b2World *)world maxHp:(NSInteger)maxHp
 {
-    self = [super init];
+    self = [super initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp];
     if (self) {
         self.gameObjectType = kCupidType;
-		isMoving_ = NO;
+		_invincible = NO;
+		_moving = NO;
         [self initAnimations];
     }
     return self;
@@ -55,11 +57,13 @@
     [self stopAllActions];
     id action = nil;
     self.characterState = newState;
-    
+    	
     switch (newState) {
         case kStateIdle:
+		{
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
             break;
+		}
 		case kStateTraveling:
 			action = [CCRepeatForever actionWithAction:
                       [CCAnimate actionWithAnimation:flappingAnim_ restoreOriginalFrame:YES]];
@@ -83,28 +87,28 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
-    if (self.characterState == kStateDead) {
+    if (self.characterState == kStateDead && [self numberOfRunningActions] == 0) {
         return;
     }
 	
-	if (isMoving_ && (attackButton_.active && self.characterState != kStateAttacking)) {
+	if (self.isMoving && (attackButton_.active && self.characterState != kStateAttacking)) {
 		[self changeState:kStateAttacking];
 		return;
 	}
 	
-	if (!isMoving_ && flyButton_.active) {
-		isMoving_ = YES;
+	if (self.isMoving && self.characterState == kStateAttacking) {
+		[self changeState:kStateTraveling];
+		return;
+	}
+	
+	if (!self.isMoving && flyButton_.active) {
+		self.moving = YES;
+		[self changeState:kStateTraveling];
 	}
 		
-	if (isMoving_ && flyButton_.active) {
-		if (self.characterState != kStateTraveling) {
-			[self changeState:kStateTraveling];
-		}
+	if (self.isMoving && flyButton_.active) {
 		[self fly:deltaTime];
-	} else if (isMoving_ && !flyButton_.active) {
-		if (self.characterState != kStateIdle) {
-			[self changeState:kStateIdle];
-		}
+	} else if (self.isMoving && !flyButton_.active) {
 		[self fall:deltaTime];
 	}
 }
@@ -127,16 +131,15 @@
 
 - (void)fly:(ccTime)deltaTime
 {
-	CGRect cupidBoundingBox = [self boundingBox];
-	CGPoint scaledVelocity = ccp(0.0f, 150.0f);
+	CGPoint scaledVelocity = ccp(0.0f, kCupidFlyAcceleration);
     CGPoint oldPosition = self.position;
 	
-	float top = cupidBoundingBox.origin.y + cupidBoundingBox.size.height;
+	float top = oldPosition.y + (self.contentSize.height / 2.0);
 	
 	CGPoint newPosition;
 	
 	if (top >= self.screenSize.height) {
-		newPosition = ccp(oldPosition.x, 285.0f);
+		newPosition = ccp(oldPosition.x, self.screenSize.height - (self.contentSize.height * 0.45));
 	} else {
 		newPosition = ccp(oldPosition.x, oldPosition.y + scaledVelocity.y * deltaTime);
 	}
@@ -146,15 +149,15 @@
 
 - (void)fall:(ccTime)deltaTime
 {	
-	CGPoint scaledVelocity = ccp(0.0f, 150.0f);
+	CGPoint scaledVelocity = ccp(0.0f, kCupidFallAcceleration);
     CGPoint oldPosition = self.position;
 	
-	float bottom = oldPosition.y;
+	float bottom = oldPosition.y - (self.contentSize.height / 2.0);
 	
 	CGPoint newPosition;
 	
 	if (bottom <= 0.0f) {
-		newPosition = ccp(oldPosition.x, 0.0f);
+		newPosition = ccp(oldPosition.x, self.contentSize.height * 0.45);
 	} else {
 		newPosition = ccp(oldPosition.x, oldPosition.y - scaledVelocity.y * deltaTime);
 	}
@@ -165,10 +168,8 @@
 - (void)shootArrow
 {
     CGRect boundingBox = [self boundingBox];
-	
     float xPosition = boundingBox.origin.x + (boundingBox.size.width * 0.75f);
     float yPosition = boundingBox.origin.y + (boundingBox.size.height * 0.5f);
-	
     CGPoint arrowFiringPosition = ccp(xPosition, yPosition);
     [self.delegate createArrowWithPosition:arrowFiringPosition];
 }

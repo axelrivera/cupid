@@ -12,9 +12,9 @@
 
 @synthesize delegate = delegate_;
 
-- (id)init
+- (id)initWithSpriteFrameName:(NSString *)spriteFrameName world:(b2World *)world maxHp:(NSInteger)maxHp
 {
-	self = [super init];
+	self = [super initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp];
 	if (self) {
 		self.gameObjectType = kRotatingMonsterType;
 	}
@@ -79,7 +79,8 @@
 			 [CCRepeatForever actionWithAction:
 			  [CCSequence actions:
 			   [CCDelayTime actionWithDuration:0.5],
-			   [CCRotateBy actionWithDuration:2.0 angle:365.0],
+			   [CCRotateBy actionWithDuration:1.5 angle:360.0],
+			   [CCDelayTime actionWithDuration:0.5],
 			   [CCCallFunc actionWithTarget:self selector:@selector(shootBeam)],
 			   nil]]];
 //			float xOffset = [self boundingBox].size.width / 2.0f;

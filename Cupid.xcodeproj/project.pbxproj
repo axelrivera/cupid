@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		1601A90F159E508400793C5A /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1601A90E159E508400793C5A /* GLES-Render.mm */; };
 		1601A916159E57CA00793C5A /* ShapeCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1601A914159E57CA00793C5A /* ShapeCache.mm */; };
+		163FC68715A9F5C500C54776 /* GameScoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FC68615A9F5C500C54776 /* GameScoreLayer.m */; };
+		163FC69D15AA132A00C54776 /* GameScoreFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 163FC69915AA132A00C54776 /* GameScoreFont-hd.fnt */; };
+		163FC69E15AA132A00C54776 /* GameScoreFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 163FC69A15AA132A00C54776 /* GameScoreFont-hd.png */; };
+		163FC69F15AA132A00C54776 /* GameScoreFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 163FC69B15AA132A00C54776 /* GameScoreFont.fnt */; };
+		163FC6A015AA132A00C54776 /* GameScoreFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 163FC69C15AA132A00C54776 /* GameScoreFont.png */; };
+		163FC6A715AA35B600C54776 /* Star.mm in Sources */ = {isa = PBXBuildFile; fileRef = 163FC6A615AA35B600C54776 /* Star.mm */; };
+		163FC6A915AA402100C54776 /* Boost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 163FC6A815AA402100C54776 /* Boost.plist */; };
 		1642F4D71512821800DA67BE /* spritesheet-iPhone-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */; };
 		1642F4D81512821800DA67BE /* spritesheet-iPhone-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */; };
 		1642F4D91512821800DA67BE /* spritesheet-iPhone.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */; };
@@ -22,6 +29,7 @@
 		165B301E15A26BC700E8DA5B /* ParticleSystemArray.mm in Sources */ = {isa = PBXBuildFile; fileRef = 165B301D15A26BC700E8DA5B /* ParticleSystemArray.mm */; };
 		165B302515A26FCB00E8DA5B /* Explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 165B302415A26FCB00E8DA5B /* Explosion.plist */; };
 		1686456515168486004ACBB8 /* MonsterBeam.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1686456415168486004ACBB8 /* MonsterBeam.mm */; };
+		169874AC15ABD2FB00B82248 /* powerup.caf in Resources */ = {isa = PBXBuildFile; fileRef = 169874AB15ABD2FB00B82248 /* powerup.caf */; };
 		16D4FB26159A9699002891C9 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB1E159A9699002891C9 /* CDAudioManager.m */; };
 		16D4FB27159A9699002891C9 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB21159A9699002891C9 /* CDOpenALSupport.m */; };
 		16D4FB28159A9699002891C9 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4FB23159A9699002891C9 /* CocosDenshion.m */; };
@@ -214,6 +222,15 @@
 		1601A913159E57CA00793C5A /* ShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeCache.h; sourceTree = "<group>"; };
 		1601A914159E57CA00793C5A /* ShapeCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapeCache.mm; sourceTree = "<group>"; };
 		1601A915159E57CA00793C5A /* SimpleContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleContactListener.h; sourceTree = "<group>"; };
+		163FC68515A9F5C500C54776 /* GameScoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScoreLayer.h; sourceTree = "<group>"; };
+		163FC68615A9F5C500C54776 /* GameScoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScoreLayer.m; sourceTree = "<group>"; };
+		163FC69915AA132A00C54776 /* GameScoreFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "GameScoreFont-hd.fnt"; sourceTree = "<group>"; };
+		163FC69A15AA132A00C54776 /* GameScoreFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameScoreFont-hd.png"; sourceTree = "<group>"; };
+		163FC69B15AA132A00C54776 /* GameScoreFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GameScoreFont.fnt; sourceTree = "<group>"; };
+		163FC69C15AA132A00C54776 /* GameScoreFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameScoreFont.png; sourceTree = "<group>"; };
+		163FC6A515AA35B500C54776 /* Star.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star.h; sourceTree = "<group>"; };
+		163FC6A615AA35B600C54776 /* Star.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Star.mm; sourceTree = "<group>"; };
+		163FC6A815AA402100C54776 /* Boost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boost.plist; sourceTree = "<group>"; };
 		1642F4D31512821800DA67BE /* spritesheet-iPhone-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone-hd.plist"; sourceTree = "<group>"; };
 		1642F4D41512821800DA67BE /* spritesheet-iPhone-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spritesheet-iPhone-hd.png"; sourceTree = "<group>"; };
 		1642F4D51512821800DA67BE /* spritesheet-iPhone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spritesheet-iPhone.plist"; sourceTree = "<group>"; };
@@ -229,6 +246,7 @@
 		165B302415A26FCB00E8DA5B /* Explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Explosion.plist; sourceTree = "<group>"; };
 		1686456315168486004ACBB8 /* MonsterBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBeam.h; sourceTree = "<group>"; };
 		1686456415168486004ACBB8 /* MonsterBeam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonsterBeam.mm; sourceTree = "<group>"; };
+		169874AB15ABD2FB00B82248 /* powerup.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = powerup.caf; sourceTree = "<group>"; };
 		16D4FB1D159A9699002891C9 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		16D4FB1E159A9699002891C9 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		16D4FB1F159A9699002891C9 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -652,6 +670,8 @@
 				16F907B815126DCE00DB7FB6 /* GameControlLayer.m */,
 				16F907BF15126DCE00DB7FB6 /* GameOverLayer.h */,
 				16F907C015126DCE00DB7FB6 /* GameOverLayer.m */,
+				163FC68515A9F5C500C54776 /* GameScoreLayer.h */,
+				163FC68615A9F5C500C54776 /* GameScoreLayer.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -668,6 +688,7 @@
 		165B300E15A12E5600E8DA5B /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				169874AB15ABD2FB00B82248 /* powerup.caf */,
 				165B301A15A1332A00E8DA5B /* shoot.wav */,
 				165B300F15A12E5600E8DA5B /* dead.wav */,
 				165B301015A12E5600E8DA5B /* explosion.wav */,
@@ -681,6 +702,7 @@
 		165B302315A26FCB00E8DA5B /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				163FC6A815AA402100C54776 /* Boost.plist */,
 				165B302415A26FCB00E8DA5B /* Explosion.plist */,
 			);
 			name = Particles;
@@ -1239,6 +1261,7 @@
 		16F907A115126D5800DB7FB6 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				16F907B115126DCE00DB7FB6 /* CommonProtocols.h */,
 				16F907B215126DCE00DB7FB6 /* Constants.h */,
 			);
 			name = Constants;
@@ -1255,6 +1278,8 @@
 				16F907B615126DCE00DB7FB6 /* GameCharacter.mm */,
 				16F907BB15126DCE00DB7FB6 /* GameObject.h */,
 				16F907BC15126DCE00DB7FB6 /* GameObject.mm */,
+				163FC6A515AA35B500C54776 /* Star.h */,
+				163FC6A615AA35B600C54776 /* Star.mm */,
 			);
 			name = "Game Objects";
 			sourceTree = "<group>";
@@ -1275,7 +1300,6 @@
 		16F907A815126D8D00DB7FB6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				16F907B115126DCE00DB7FB6 /* CommonProtocols.h */,
 				1601A913159E57CA00793C5A /* ShapeCache.h */,
 				1601A914159E57CA00793C5A /* ShapeCache.mm */,
 				1601A915159E57CA00793C5A /* SimpleContactListener.h */,
@@ -1307,6 +1331,10 @@
 		16F907F91512770300DB7FB6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				163FC69915AA132A00C54776 /* GameScoreFont-hd.fnt */,
+				163FC69A15AA132A00C54776 /* GameScoreFont-hd.png */,
+				163FC69B15AA132A00C54776 /* GameScoreFont.fnt */,
+				163FC69C15AA132A00C54776 /* GameScoreFont.png */,
 				16F907FA1512770300DB7FB6 /* CupidFont-hd.fnt */,
 				16F907FB1512770300DB7FB6 /* CupidFont-hd.png */,
 				16F907FC1512770300DB7FB6 /* CupidFont.fnt */,
@@ -1423,6 +1451,12 @@
 				165B301715A12E5600E8DA5B /* Positive_Boy.mp3 in Resources */,
 				165B301B15A1332A00E8DA5B /* shoot.wav in Resources */,
 				165B302515A26FCB00E8DA5B /* Explosion.plist in Resources */,
+				163FC69D15AA132A00C54776 /* GameScoreFont-hd.fnt in Resources */,
+				163FC69E15AA132A00C54776 /* GameScoreFont-hd.png in Resources */,
+				163FC69F15AA132A00C54776 /* GameScoreFont.fnt in Resources */,
+				163FC6A015AA132A00C54776 /* GameScoreFont.png in Resources */,
+				163FC6A915AA402100C54776 /* Boost.plist in Resources */,
+				169874AC15ABD2FB00B82248 /* powerup.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1624,8 @@
 				1601A90F159E508400793C5A /* GLES-Render.mm in Sources */,
 				1601A916159E57CA00793C5A /* ShapeCache.mm in Sources */,
 				165B301E15A26BC700E8DA5B /* ParticleSystemArray.mm in Sources */,
+				163FC68715A9F5C500C54776 /* GameScoreLayer.m in Sources */,
+				163FC6A715AA35B600C54776 /* Star.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1669,7 +1705,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18866A55-EB6D-4755-B41D-83F6584F12D7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0EF16DBF-E9AB-4105-8225-B00B51E3C637";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libraries/cocos2d-iphone\"/** \"$(SRCROOT)/Libraries/PESprite\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -16,6 +16,11 @@
 @end
 
 @implementation GameOverLayer
+{
+	CCLabelBMFont *titleLabel_;
+	CCMenuItemLabel *mainMenuItem_;
+	CCMenuItemLabel *restartMenuItem_;
+}
 
 @synthesize delegate = delegate_;
 

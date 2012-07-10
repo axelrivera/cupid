@@ -1,35 +1,34 @@
 //
-//  MonsterBeam.m
+//  Star.m
 //  Cupid
 //
-//  Created by Axel Rivera on 3/18/12.
+//  Created by Axel Rivera on 7/8/12.
 //  Copyright (c) 2012 Axel Rivera. All rights reserved.
 //
 
-#import "MonsterBeam.h"
+#import "Star.h"
 
-@implementation MonsterBeam
+@implementation Star
 
-- (id)initWithSpriteFrameName:(NSString *)spriteFrameName world:(b2World *)world maxHp:(NSInteger)maxHp
+- (id)init
 {
-	self = [super initWithSpriteFrameName:spriteFrameName world:world maxHp:maxHp];
-	if (self) {
-		CCLOG(@"MonsterBeam: initialized");
-		self.gameObjectType = kMonsterBeamType;
-	}
-	return self;
+    self = [super init];
+    if (self) {
+        self.gameObjectType = kStarType;
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-	[super dealloc];
+    [super dealloc];
 }
 
 #pragma mark - Parent Methods
 
 - (void)changeState:(CharacterStates)newState
 {
-	[self stopAllActions];
+    [self stopAllActions];
     
     id action = nil;
     self.characterState = newState;
@@ -39,20 +38,20 @@
 			[self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:self.defaultName]];
 			self.maxHp = 1;
 			[self revive];
+			NSLog(@"Spawning Star with Frame: %@", self.defaultName);
 			break;
         case kStateTraveling:
 		{
 			CGSize winSize = [CCDirector sharedDirector].winSize;
-			CGFloat velocity = (winSize.width + ([self boundingBox].size.width / 2.0)) / 1.5f;
-			CGFloat duration = self.position.x / velocity;
-            action = [CCSequence actions:
-					  [CCMoveTo actionWithDuration:duration position:ccp(0.0 - 29.0f, self.position.y)],
+			float xOffset = -winSize.width - self.contentSize.width;
+			action = [CCSequence actions:
+					  [CCMoveBy actionWithDuration:randomValueBetween(2.0f, 10.0f) position:ccp(xOffset, 0)],
 					  [CCCallFunc actionWithTarget:self selector:@selector(destroy)],
 					  nil];
             break;
-		}
+        }
         default:
-            CCLOG(@"Monster Beam: Unknown state %@", self.characterState);
+            CCLOG(@"%@: Unknown state %@", NSStringFromClass([self class]), self.characterState);
             break;
     }
     
@@ -63,7 +62,7 @@
 
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray *)listOfGameObjects
 {
-	
+	// Update Method
 }
 
 @end

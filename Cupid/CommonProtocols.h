@@ -12,6 +12,8 @@ typedef enum {
     kStateAttacking,
     kStateTakingDamage,
     kStateTraveling,
+	kStatePoweredUp,
+	kStatePoweredDown,
     kStateDead,
 } CharacterStates;
 
@@ -21,7 +23,8 @@ typedef enum {
     kArrowType,
     kMonsterType,
     kRotatingMonsterType,
-	kMonsterBeamType
+	kMonsterBeamType,
+	kStarType
 } GameObjectType;
 
 @protocol GameplayLayerDelegate

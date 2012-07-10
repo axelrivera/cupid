@@ -13,11 +13,6 @@
 @protocol GameOverLayerDelegate;
 
 @interface GameOverLayer : CCLayer
-{
-	CCLabelBMFont *titleLabel_;
-	CCMenuItemLabel *mainMenuItem_;
-	CCMenuItemLabel *restartMenuItem_;
-}
 
 @property (nonatomic, assign) id <GameOverLayerDelegate> delegate;
 

@@ -14,7 +14,8 @@
 
 @property (nonatomic, assign) id <GameplayLayerDelegate> delegate;
 
-@property (nonatomic, assign) BOOL isMoving;
+@property (nonatomic, assign, getter = isInvincible) BOOL invincible; 
+@property (nonatomic, assign, getter = isMoving) BOOL moving;
 
 @property (nonatomic, retain) CCAnimation *flappingAnim;
 @property (nonatomic, retain) CCAnimation *shootingAnim;

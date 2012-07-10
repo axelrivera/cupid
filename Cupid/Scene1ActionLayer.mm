@@ -17,8 +17,10 @@
 #import "Monster.h"
 #import "RotatingMonster.h"
 #import "MonsterBeam.h"
+#import "Star.h"
 #import "GameObjectArray.h"
 #import "ParticleSystemArray.h"
+#import "GameScoreLayer.h"
 
 @interface Scene1ActionLayer (Private)
 
@@ -26,10 +28,13 @@
 - (void)setupArrays;
 - (void)updateMonsters:(ccTime)deltaTime;
 - (void)updateRotatingMonsters:(ccTime)deltaTime;
+- (void)updatePowerUp:(ccTime)deltaTime;
+- (void)updateBoostEffects:(ccTime)deltaTime;
 - (void)updateBox2D:(ccTime)deltaTime;
 - (void)createCloud;
 - (void)resetCloudWithNode:(id)node;
 - (void)loadGameOverLayer;
+- (void)addScore:(NSInteger)score;
 
 - (void)setupSound;
 
@@ -40,14 +45,18 @@
 
 @implementation Scene1ActionLayer
 {
+	NSInteger _score;
 	CCSpriteBatchNode *_sceneSpriteBatchNode;
 	double _nextMonsterSpawn;
 	double _nextRotatingMonsterSpawn;
+	double _nextPowerUpSpawn;
 	GameObjectArray *_monsterArray;
 	GameObjectArray *_rotatingMonsterArray;
 	GameObjectArray *_arrowArray;
 	GameObjectArray *_beamArray;
+	GameObjectArray *_powerUpArray;
 	ParticleSystemArray *_explosionsArray;
+	ParticleSystemArray *_boostEffectsArray;
 	BOOL _gameOver;
 	
 	// Box2D
@@ -56,12 +65,14 @@
     GLESDebugDraw *_debugDraw;
 }
 
+@synthesize gameScoreLayer = _gameScoreLayer;
+
 - (id)init
 {
 	self = [super init];
 	if (self) {
 		[self setupWorld];
-		//[self setupDebugDraw];
+		_score = 0;
 		
 		_gameOver = NO;
 		
@@ -99,11 +110,14 @@
 
 - (void)dealloc
 {
+	_gameScoreLayer = nil;
 	[_monsterArray release];
 	[_rotatingMonsterArray release];
 	[_arrowArray release];
 	[_beamArray release];
+	[_powerUpArray release];
 	[_explosionsArray release];
+	[_boostEffectsArray release];
 	[super dealloc];
 }
 
@@ -126,6 +140,8 @@
 	[self updateMonsters:deltaTime];
 	[self updateRotatingMonsters:deltaTime];
 	[self updateBox2D:deltaTime];
+	[self updatePowerUp:deltaTime];
+	[self updateBoostEffects:deltaTime];
 }
 
 #pragma mark - Custom Methods
@@ -178,7 +194,16 @@
 													 world:_world
 													 maxHp:1];
 	
+	_powerUpArray = [[GameObjectArray alloc] initWithCapacity:1
+													className:NSStringFromClass([Star class])
+											  spriteFrameName:@"powerup.png"
+													batchNode:_sceneSpriteBatchNode
+														world:_world
+														maxHp:1];
+	
 	_explosionsArray = [[ParticleSystemArray alloc] initWithFile:@"Explosion.plist" capacity:3 parent:self];
+	
+	_boostEffectsArray = [[ParticleSystemArray alloc] initWithFile:@"Boost.plist" capacity:1 parent:self];
 }
 
 - (void)createCloud
@@ -218,6 +243,15 @@
 	[_sceneSpriteBatchNode reorderChild:cloud z:newZOrder];
 }
 
+- (void)boostDone
+{
+	Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
+	cupid.invincible = NO;
+    for (CCParticleSystemQuad *boostEffect in _boostEffectsArray.array) {
+        [boostEffect stopSystem];
+    }
+}
+
 - (void)updateMonsters:(ccTime)deltaTime
 {
 	CGSize screenSize = [CCDirector sharedDirector].winSize;
@@ -241,14 +275,14 @@
 		// Set it's size to be one of 3 random sizes
         int randNum = arc4random() % 3;
         if (randNum == 0) {
-            monster.scale = 0.75;
-            monster.maxHp = 1;
+            monster.scale = kMonsterGreySmallScale;
+            monster.maxHp = kMonsterGreySmallMaxHp;
         } else if (randNum == 1) {
-            monster.scale = 1.0;
-            monster.maxHp = 2;
+            monster.scale = kMonsterGreyMediumScale;
+            monster.maxHp = kMonsterGreyMediumMaxHp;
         } else {
-            monster.scale = 1.25;
-            monster.maxHp = 3;
+            monster.scale = kMonsterGreyLargeScale;
+            monster.maxHp = kMonsterGreyLargeMaxHp;
         }
 		
         [monster changeState:kStateSpawning];
@@ -269,7 +303,7 @@
 		
         // Create a new monster object
         RotatingMonster *rotatingMonster = (RotatingMonster *)[_rotatingMonsterArray nextObject];
-		rotatingMonster.maxHp = 4;
+		rotatingMonster.maxHp = kMonsterBlueMaxHp;
 		rotatingMonster.delegate = self;
 		
 		float randYLow = 0.0 + (rotatingMonster.contentSize.height / 2.0);
@@ -280,6 +314,27 @@
         [rotatingMonster changeState:kStateSpawning];
 		[rotatingMonster changeState:kStateTraveling];
     }	
+}
+
+- (void)updatePowerUp:(ccTime)deltaTime
+{
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    double curTime = CACurrentMediaTime();
+    if (curTime > _nextPowerUpSpawn) {            
+        _nextPowerUpSpawn = curTime + randomValueBetween(10.0, 20.0);
+        GameCharacter *powerup = [_powerUpArray nextObject];
+        powerup.position = ccp(winSize.width, randomValueBetween(0.0, winSize.height));
+        [powerup changeState:kStateSpawning];
+		[powerup changeState:kStateTraveling];
+    }
+}
+
+- (void)updateBoostEffects:(ccTime)dt {
+	Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
+    for (CCParticleSystemQuad *particleSystem in _boostEffectsArray.array) {
+        particleSystem.position = cupid.position;
+    }
 }
 
 - (void)updateBox2D:(ccTime)deltaTime
@@ -306,6 +361,14 @@
 	[self addChild:gameOverLayer z:500];
 }
 
+- (void)addScore:(NSInteger)score
+{
+	_score += score;
+	if (self.gameScoreLayer) {
+		[self.gameScoreLayer setScoreLabelWithInteger:_score];
+	}
+}
+
 - (void)setupSound
 {
 	[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Positive_Boy.mp3" loop:YES];
@@ -313,6 +376,7 @@
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"dead.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"explosion.wav"];
 	[[SimpleAudioEngine sharedEngine] preloadEffect:@"laser.wav"];
+	[[SimpleAudioEngine sharedEngine] preloadEffect:@"powerup.caf"];
 }
 
 #pragma mark - Gameplay Delegate Methods
@@ -371,41 +435,71 @@
 #pragma mark - SimpleContactListener Callback Methods
 
 - (void)beginContact:(b2Contact *)contact
-{
+{	
+	Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
+	
 	b2Fixture *fixtureA = contact->GetFixtureA();
     b2Fixture *fixtureB = contact->GetFixtureB();
 	
     b2Body *bodyA = fixtureA->GetBody();
     b2Body *bodyB = fixtureB->GetBody();
     
-	GameObject *spriteA = (GameObject *)bodyA->GetUserData();
-    GameObject *spriteB = (GameObject *)bodyB->GetUserData();
-    
+	GameCharacter *spriteA = (GameCharacter *)bodyA->GetUserData();
+    GameCharacter *spriteB = (GameCharacter *)bodyB->GetUserData();
+	    
     if (!spriteA.visible || !spriteB.visible) return;
 	
 	b2WorldManifold manifold;
 	contact->GetWorldManifold(&manifold);
 	b2Vec2 b2ContactPoint = manifold.points[0];
 	CGPoint contactPoint = ccp(b2ContactPoint.x * PTM_RATIO, b2ContactPoint.y * PTM_RATIO);
-    
-    //CGSize winSize = [CCDirector sharedDirector].winSize;
-    
+        
     if ((fixtureA->GetFilterData().categoryBits & kCategoryCupidArrow && fixtureB->GetFilterData().categoryBits & kCategoryEnemy) ||
         (fixtureB->GetFilterData().categoryBits & kCategoryCupidArrow && fixtureA->GetFilterData().categoryBits & kCategoryEnemy))
 	{ 
         // Determine enemy and arrow
-        GameObject *enemy = (GameObject *)spriteA;
-        GameObject *arrow = (GameObject *)spriteB;
+        GameCharacter *enemy = (GameCharacter *)spriteA;
+        GameCharacter *arrow = (GameCharacter *)spriteB;
         if (fixtureB->GetFilterData().categoryBits & kCategoryEnemy) {
-            enemy = (GameObject *)spriteB;
-            arrow = (GameObject *)spriteA;
+            enemy = (GameCharacter *)spriteB;
+            arrow = (GameCharacter *)spriteA;
         }
         
         // Make sure not already dead
         if (![enemy dead] && ![arrow dead]) {
+			[arrow takeHit];
+			NSInteger comboScore = 0;
 			[[SimpleAudioEngine sharedEngine] playEffect:@"explosion.wav"];
-            [enemy takeHit];
+			
+			if (cupid.isInvincible) {
+				[enemy destroy];
+			} else {
+				[enemy takeHit];
+			}
+			
+			if (enemy.maxHp > 1) {
+				comboScore += kMonsterSingleHitPoint;
+			}
+			
 			if ([enemy dead]) {
+				switch (enemy.gameObjectType) {
+					case kMonsterType:
+					{
+						if (enemy.scale == kMonsterGreySmallScale) {
+							comboScore += kMonsterGreySmallKillPoints;
+						} else if (enemy.scale == kMonsterGreyMediumScale) {
+							comboScore += kMonsterGreyMediumKillPoints;
+						} else if (enemy.scale == kMonsterGreyLargeScale) {
+							comboScore += kMonsterGreyLargeKillPoints;
+						}
+						break;
+					}
+					case kRotatingMonsterType:
+						comboScore += kMonsterBlueKillPoints;
+						break;
+					default:
+						break;
+				}
 				CCParticleSystemQuad *explosion = [_explosionsArray nextParticleSystem];
 				explosion.scale = 0.2;
 				explosion.position = contactPoint;
@@ -417,7 +511,13 @@
 				[explosion resetSystem];
 			}
 			
-            [arrow takeHit];           
+			if (cupid.isInvincible) {
+				comboScore *= kCupidInvincibleMultiplier;
+			}
+			
+			if (comboScore > 0) {
+				[self addScore:comboScore];
+			}
         }
     }
     
@@ -428,14 +528,77 @@
         if (fixtureB->GetFilterData().categoryBits & kCategoryEnemy) {
             enemy = (GameObject *)spriteB;
         }
-		
-		if (enemy.gameObjectType == kMonsterBeamType) {
-			[enemy takeHit];
-		}
 
-        Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
-		[cupid takeHit];
-    }    
+        if (cupid.isInvincible) {
+			NSInteger comboScore = 0;
+			[[SimpleAudioEngine sharedEngine] playEffect:@"explosion.wav"];
+			[enemy destroy];
+			
+			if ([enemy dead]) {
+				switch (enemy.gameObjectType) {
+					case kMonsterType:
+					{
+						if (enemy.scale == kMonsterGreySmallScale) {
+							comboScore += kMonsterGreySmallKillPoints;
+						} else if (enemy.scale == kMonsterGreyMediumScale) {
+							comboScore += kMonsterGreyMediumKillPoints;
+						} else if (enemy.scale == kMonsterGreyLargeScale) {
+							comboScore += kMonsterGreyLargeKillPoints;
+						}
+						break;
+					}
+					case kRotatingMonsterType:
+						comboScore += kMonsterBlueKillPoints;
+						break;
+					default:
+						break;
+				}
+				CCParticleSystemQuad *explosion = [_explosionsArray nextParticleSystem];
+				explosion.scale = 0.2;
+				explosion.position = contactPoint;
+				[explosion resetSystem];
+			} else {
+				CCParticleSystemQuad *explosion = [_explosionsArray nextParticleSystem];
+				explosion.scale *= 0.1;
+				explosion.position = contactPoint;
+				[explosion resetSystem];
+			}
+			
+			comboScore *= kCupidInvincibleMultiplier;
+			if (comboScore > 0) {
+				[self addScore:comboScore];
+			}
+		} else {
+			if (enemy.gameObjectType == kMonsterBeamType) {
+				[enemy destroy];
+			}
+			[cupid takeHit];
+		}
+    }   
+	
+	if ((fixtureA->GetFilterData().categoryBits & kCategoryCupid && fixtureB->GetFilterData().categoryBits & kCategoryPowerUp) ||
+        (fixtureB->GetFilterData().categoryBits & kCategoryCupid && fixtureA->GetFilterData().categoryBits & kCategoryPowerUp)) { 
+        
+        // Determine power up
+        GameCharacter *powerUp = (GameCharacter *)spriteA;
+		
+        if (fixtureB->GetFilterData().categoryBits & kCategoryPowerUp) {
+            powerUp = (GameCharacter *)spriteB;
+        }
+		
+		Cupid *cupid = (Cupid *)[_sceneSpriteBatchNode getChildByTag:kCupidSpriteTagValue];
+        
+        if (![powerUp dead]) {            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"powerup.caf" pitch:1.0 pan:0.0 gain:1.0];
+            
+            [powerUp destroy];
+            // TODO: Make the powerup do something! 
+            cupid.invincible = YES;
+            CCParticleSystemQuad *boostEffect = [_boostEffectsArray nextParticleSystem];
+            [boostEffect resetSystem];
+			[self scheduleOnce:@selector(boostDone) delay:10.0];
+        }                
+    }
 }
 
 - (void)endContact:(b2Contact *)contact

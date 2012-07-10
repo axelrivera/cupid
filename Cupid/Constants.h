@@ -16,15 +16,36 @@
 #define kCupidDefaultXPosition 100.0
 #define kCupidDefaultYPosition 150.0
 
+#define kCupidFlyAcceleration 225.0
+#define kCupidFallAcceleration 150.0
+
+#define kCupidInvincibleMultiplier 2
+
 #define kCategoryCupid 0x1
 #define kCategoryCupidArrow 0x2
 #define kCategoryEnemy 0x4
+#define kCategoryPowerUp 0x8
 
 #define kMainMenuTagValue 10
 #define kSceneMenuTagValue 20
 
 #define kMaxCloudMoveDuration 10
 #define kMinCloudMoveDuration 1
+
+#define kMonsterGreySmallScale 0.75
+#define kMonsterGreyMediumScale 1.0
+#define kMonsterGreyLargeScale 1.25
+
+#define kMonsterGreySmallMaxHp 1
+#define kMonsterGreyMediumMaxHp 2
+#define kMonsterGreyLargeMaxHp 3
+#define kMonsterBlueMaxHp 4
+
+#define kMonsterSingleHitPoint 2
+#define kMonsterGreySmallKillPoints 5
+#define kMonsterGreyMediumKillPoints 10
+#define kMonsterGreyLargeKillPoints 15
+#define kMonsterBlueKillPoints 25
 
 typedef enum {
     kNoSceneUninitialized = 0,

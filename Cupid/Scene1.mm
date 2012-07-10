@@ -10,6 +10,7 @@
 #import "Scene1BackgroundLayer.h"
 #import "Scene1ActionLayer.h"
 #import "GameControlLayer.h"
+#import "GameScoreLayer.h"
 
 @implementation Scene1
 
@@ -23,7 +24,11 @@
 		GameControlLayer *controlLayer = [GameControlLayer node];
 		[self addChild:controlLayer z:10 tag:2];
 		
+		GameScoreLayer *gameScoreLayer = [GameScoreLayer node];
+		[self addChild:gameScoreLayer z:15];
+		
 		Scene1ActionLayer *actionLayer = [Scene1ActionLayer node];
+		actionLayer.gameScoreLayer = gameScoreLayer;
 		[actionLayer connectControlsWithFlyButton:controlLayer.flyButton andAttackButton:controlLayer.attackButton];
 		[self addChild:actionLayer z:5];
 	}
